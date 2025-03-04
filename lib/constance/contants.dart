@@ -41,6 +41,7 @@ class MyConst {
   static String yearly_membership_android = "yearly_subscription";
   static String lifetime_membership_android = "lifetime_subscription_1";
 
+
   //web_view_url
   static String privacy_policy_url = "https://quintustech.in/privacy-policy";
   static String about_us_url = "https://quintustech.in/about";
