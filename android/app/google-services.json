@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "960096798901",
+    "firebase_url": "https://astrologer-f17de-default-rtdb.firebaseio.com",
+    "project_id": "astrologer-f17de",
+    "storage_bucket": "astrologer-f17de.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960096798901:android:b13753e2028b92e309d6fc",
+        "android_client_info": {
+          "package_name": "ai.astrology.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3eZgH9ygFf4MejU8ioO7_Tpk2sHQtS5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960096798901:android:e6f10eb0290ffecf09d6fc",
+        "android_client_info": {
+          "package_name": "ai.astrology.app.admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3eZgH9ygFf4MejU8ioO7_Tpk2sHQtS5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyD81HDYV7o5kDZ4DwwAyeekyuHZDFfyw-4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>960096798901</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ai.astrology.app.admin</string>
+	<key>PROJECT_ID</key>
+	<string>astrologer-f17de</string>
+	<key>STORAGE_BUCKET</key>
+	<string>astrologer-f17de.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:960096798901:ios:fa8b486dc957f20f09d6fc</string>
+	<key>DATABASE_URL</key>
+	<string>https://astrologer-f17de-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
