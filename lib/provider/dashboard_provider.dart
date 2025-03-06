@@ -12,6 +12,7 @@ import 'package:astrologeradmin/views/dashboard/home_view.dart';
 import 'package:astrologeradmin/views/dashboard/user_view.dart';
 import 'package:astrologeradmin/views/dashboard/wallet_view.dart';
 import 'package:astrologeradmin/views/video_Call/SearchVideoScreen.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,6 +31,7 @@ import '../model/ScheduleResponse.dart';
 import '../model/astro_skill_model.dart';
 import '../model/consultation_response.dart';
 import '../model/get_languages_model.dart';
+import '../model/messageModel.dart';
 import '../model/quiz_response.dart';
 import '../model/update_consultationModel.dart';
 import '../services/ApiService.dart';
@@ -106,6 +108,8 @@ class DashboardProvider extends ChangeNotifier {
 
   int currentIndex_banner = 0;
   int tabIndex = 0;
+  int previous_tab = 0;
+
   Color selectedColor = secondaryTextColor;
   final ApiService apiService = ApiService();
 
@@ -1408,6 +1412,7 @@ class DashboardProvider extends ChangeNotifier {
     }
   }
 
+
   updateConsultation(BuildContext context, String mstatus, int con_id,
       int consultation_type, String duration, int charge_amount) async {
     try {
@@ -1430,6 +1435,27 @@ class DashboardProvider extends ChangeNotifier {
             CustomNavigators.pushNavigate(
                 AstrologerChat(mconsultationData: mResponse.data!), context);
           }
+        } else if (mstatus == "4") {
+          DatabaseReference databaseReference = FirebaseDatabase.instance
+              .ref()
+              .child(consultation_type == 2?"room_call":"astro_chat")
+              .child(con_id.toString());
+          if(consultation_type!=2) {
+            try {
+              MessageModel messageModel = MessageModel(
+                message: "",
+                messanger_name: "",
+                user_id: "astro_" + "878",
+              );
+              await databaseReference
+                  .child("chathistory")
+                  .push()
+                  .set(messageModel.toJson());
+            } catch (error) {
+              debugPrint("Failed to send message: $error");
+            }
+          }
+          databaseReference.remove();
         } else {
           showSuccessSnackBar(context, mResponse.message!);
         }
@@ -1528,11 +1554,13 @@ class DashboardProvider extends ChangeNotifier {
   }
 
   changeTab(int index) {
+    previous_tab = tabIndex;
     tabIndex = index;
     notifyListeners();
   }
 
   tabOnTap(int index) {
+    previous_tab = tabIndex;
     tabIndex = index;
     if (tabIndex == index) {
       selectedColor = secondaryTextColor;

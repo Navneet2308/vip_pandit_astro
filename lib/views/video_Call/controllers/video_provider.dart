@@ -52,6 +52,8 @@ class VideoProvider with ChangeNotifier {
   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.paused && !isYouLeft) {
       isYouLeft = true;
+      print("isYouLeft_value_new"+isYouLeft.toString());
+
       final databaseReference = FirebaseDatabase.instance.ref().child("room_call");
       await databaseReference.child(consultationData.conId.toString()).remove();    }
   }
@@ -60,6 +62,7 @@ class VideoProvider with ChangeNotifier {
     final databaseReference = FirebaseDatabase.instance.ref().child("room_call");
     FirebaseDatabase.instance.setPersistenceEnabled(true);
     listener = databaseReference.child(consultationData.conId.toString()).onChildRemoved.listen((event) async {
+      print("isYouLeft_value"+isYouLeft.toString());
       if (!isYouLeft) {
         Fluttertoast.showToast(msg: "User Left");
         print("start");

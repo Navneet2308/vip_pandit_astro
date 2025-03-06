@@ -116,10 +116,17 @@ class LanguageEn extends Languages{
   @override
   String get by_signing_up => "By signing up, you agree to our";
 
+  @override
+  String get exitAppTitle => "Exit App?";
 
+  @override
+  String get exitAppMessage => "Are you sure you want to exit?";
 
   @override
   String get phoneNumber => "Phone Number";
+
+
+
 
   @override
   String get privacyPolicy => "Privacy Policy";

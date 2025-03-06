@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:astrologeradmin/constance/language/language.dart';
 import 'package:astrologeradmin/constance/textstyle.dart';
 import 'package:astrologeradmin/utils/ui_utils.dart';
@@ -13,9 +15,21 @@ import '../../constance/my_colors.dart';
 import '../../model/consultation_response.dart';
 import '../../provider/dashboard_provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Timer? _timer;
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+  @override
+  void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final provider = Provider.of<DashboardProvider>(context, listen: false);
       provider.setDataOnCardList(context);
@@ -26,7 +40,15 @@ class HomePage extends StatelessWidget {
       provider.getDutyStatus(context);
       provider.getBankAccountAPI(context);
       provider.getBankDetails();
-    });
+      _timer = Timer.periodic(Duration(seconds: 5), (timer) {
+        provider.getDeatils(context);
+      });
+    });    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
     return Consumer<DashboardProvider>(builder: (context, provider, child) {
       return Scaffold(
         backgroundColor: bg,

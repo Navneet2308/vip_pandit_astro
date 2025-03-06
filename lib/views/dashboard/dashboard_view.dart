@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:astrologeradmin/constance/assets_path.dart';
 import 'package:astrologeradmin/constance/language/language.dart';
 import 'package:astrologeradmin/constance/my_colors.dart';
@@ -113,9 +115,57 @@ class DashboardView extends StatelessWidget {
             ],
           ),
           body:
-              Consumer<DashboardProvider>(builder: (context, provider, child) {
-            return provider.pagesList[provider.tabIndex];
-          }),
+          PopScope(
+            canPop: false,
+            onPopInvoked: (didPop) async {
+              if(provider.tabIndex>3)
+                {
+                  provider.changeTab(provider.previous_tab);
+                }
+              else
+                {
+              if (provider.titleList[provider.tabIndex].toString() == "Home") {
+                showDialog<bool>(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text(Languages.of(context)!.exitAppTitle), // Localized title
+                    content: Text(Languages.of(context)!.exitAppMessage), // Localized message
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Close the dialog
+                        },
+                        child: Text(
+                          Languages.of(context)!.no, // Localized "No"
+                          style: mediumTextStyle(
+                              fontSize: dimen16, color: colSecondary),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          exit(0);
+                        },
+                        child: Text(
+                          Languages.of(context)!.yes, // Localized "Yes"
+                          style: mediumTextStyle(
+                              fontSize: dimen16, color:colSecondary),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              } else {
+                provider.changeTab(0);
+                // pro.currentIndex.value = 0;
+                // controller.selectedWidget.value = HomeView();
+              }}
+
+              // logic
+            },
+            child: Consumer<DashboardProvider>(builder: (context, provider, child) {
+                            return provider.pagesList[provider.tabIndex];
+                          }),
+              ),
           bottomNavigationBar:
               Consumer<DashboardProvider>(builder: (context, provider, child) {
             return bottomNavigationBar(provider);

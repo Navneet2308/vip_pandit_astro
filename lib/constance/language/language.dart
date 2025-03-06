@@ -52,6 +52,8 @@ abstract class Languages {
   String get adhar_card_number;
   String get enter_adhar_card_number;
 
+  String get exitAppTitle;
+  String get exitAppMessage;
 
   String get astor_profile_bio;
   String get astor_profile_bio_detail;

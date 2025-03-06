@@ -461,6 +461,16 @@ class LanguageHi extends Languages {
   @override
   String get cancel => "रद्द करें";
 
+
+
+  @override
+  String get exitAppTitle => "क्या आप ऐप से बाहर निकलना चाहते हैं?";
+
+
+  @override
+  String get exitAppMessage => "क्या आप सुनिश्चित हैं कि आप बाहर जाना चाहते हैं?";
+
+
   @override
   String get english => "हिन्दी (भारत)";
 

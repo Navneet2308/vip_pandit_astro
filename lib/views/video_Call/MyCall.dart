@@ -15,8 +15,10 @@ class VideoCall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    VideoProvider videoProvider = Provider.of<VideoProvider>(context);
-    videoProvider.removeRoomListener(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      VideoProvider videoProvider = Provider.of<VideoProvider>(context);
+      videoProvider.removeRoomListener(context);
+    });
     return Consumer<VideoProvider>(builder: (context, videoProvider, child)
     {
       return WillPopScope(
