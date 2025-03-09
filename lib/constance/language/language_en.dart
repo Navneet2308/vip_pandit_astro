@@ -11,7 +11,13 @@ class LanguageEn extends Languages{
   String get aiAstrology => "VIP Pandit Astro v1.0.0a";
 
   @override
-  String get aiAstrologyS => "VIP Pandit Astro’s";
+  String get aiAstrologyS => "VIP Pandit Astro";
+
+  @override
+  String get onbord_des => "Register yourself with VIP Pandit and start helping people with you astrology skills";
+
+
+
 
   @override
   String get consultation_Schedule => "Consultation Schedule";
@@ -27,7 +33,8 @@ class LanguageEn extends Languages{
   String get findCompleteSolutionToYourProblems => "Find Complete Solution to Your Problems";
 
   @override
-  String get exploreNowToExperience => "Explore now to experience the benefits";
+  String get exploreNowToExperience => "Help people with your\nastrology skills and expertise";
+
 
   @override
   String get loremIpsum => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ";
@@ -42,7 +49,7 @@ class LanguageEn extends Languages{
   String get loginToAiAstrology => "Login to VIP Pandit Astro";
 
   @override
-  String get consultHundredsOfExpert =>"Consult hundreds of expert astrologers and get the certified remedies for your problems";
+  String get consultHundredsOfExpert =>"Register yourself with VIP Pandit and start helping people with you astrology skills";
 
   @override
   String get and => " and ";
@@ -110,8 +117,10 @@ class LanguageEn extends Languages{
   @override
   String get enterYourvalidMobileNumber => "Enter a valid phone number";
 
+
   @override
-  String get enterOtpWhichhas =>  "Enter OTP which has been sent to your mobile number and completely verify your account.";
+  String get enterOtpWhichhas =>
+      "Register yourself with VIP Pandit and start helping people with you astrology skills";
 
   @override
   String get by_signing_up => "By signing up, you agree to our";
@@ -448,7 +457,7 @@ class LanguageEn extends Languages{
   String get resend_otp => "Resend OTP";
 
   @override
-  String get welcome_to_aiAstro => "Welcome to VIP Pandit Astro, Now you are few step away from getting solution of your problems";
+  String get welcome_to_aiAstro => "Welcome to Ai Astrology, Your Account is Under Review! We will update you when your account is ready to use";
 
   @override
   String get account_under_Review => "Account Under Review!";

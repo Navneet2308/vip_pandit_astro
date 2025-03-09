@@ -260,7 +260,7 @@ class EditProfile extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      buildTextField(
+                      buildTextFieldProfileBio(
                         Languages.of(context)!.astor_profile_bio,
                         Languages.of(context)!.astor_profile_bio_detail,
                         provider.updateProfileBio,

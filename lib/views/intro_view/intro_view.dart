@@ -38,7 +38,7 @@ class IntroView extends StatelessWidget {
         
               Padding(
                 padding: const EdgeInsets.only(top: 15.0,left: 20,right: 20),
-                child: Text(Languages.of(context)!.loremIpsum,textAlign: TextAlign.center,style:regularTextStyle(fontSize:12.0, color:lightText),),
+                child: Text(Languages.of(context)!.onbord_des,textAlign: TextAlign.center,style:regularTextStyle(fontSize:12.0, color:lightText),),
               ),
         
         

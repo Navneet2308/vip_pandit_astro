@@ -434,14 +434,15 @@ class DashboardProvider extends ChangeNotifier {
   }
 
   String? timeSecheduleFormat() {
-    bool allDaysHaveControllers = day_controllers.values.every((controllers) =>
-        controllers.every((controller) => controller.text.isNotEmpty));
-    if (allDaysHaveControllers) {
-      return "";
+    bool atLeastOneDate = day_controllers.values.any((controllers) =>
+        controllers.any((controller) => controller.text.isNotEmpty));
+    if (atLeastOneDate) {
+      return "Please enter at least one schedule"; // At least one date is present.
     } else {
-      return ""; // At least one controller has empty text.
+      return null; // No date is provided.
     }
   }
+
 
   String? bankForm() {
     // Check if all text fields are filled
@@ -457,7 +458,7 @@ class DashboardProvider extends ChangeNotifier {
 
     if (bank_ifsc.isEmpty) return "IFSC code is required.";
     if (!RegExp(r'^[A-Z]{4}0[A-Z0-9]{6}$').hasMatch(bank_ifsc)) {
-      return "Invalid IFSC code format.";
+      return "Invalid IFSC code.";
     }
 
     if (bank_name.isEmpty) return "Bank name is required.";

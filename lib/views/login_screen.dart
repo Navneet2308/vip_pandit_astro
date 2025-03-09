@@ -58,7 +58,7 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20),
@@ -133,7 +133,7 @@ class LoginView extends StatelessWidget {
                         text: Languages.of(context)!.bySigningUpYouAgree,
                       ),
                       TextSpan(
-                        text: Languages.of(context)!.termsAndConditions,
+                        text: " "+Languages.of(context)!.termsAndConditions,
                         style: regularTextStyle(
                             fontSize: 13.0, color: colSecondary),
                         recognizer: TapGestureRecognizer()

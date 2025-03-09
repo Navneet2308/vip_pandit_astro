@@ -360,7 +360,7 @@ class RegisterScreen extends StatelessWidget {
                       TextSpan(
                           text: Languages.of(context)!.bySigningUpYouAgree),
                       TextSpan(
-                        text: Languages.of(context)!.termsAndConditions,
+                        text: " "+Languages.of(context)!.termsAndConditions,
                         style: regularTextStyle(
                             fontSize: 13.0, color: secondaryTextColor),
                         recognizer: TapGestureRecognizer()

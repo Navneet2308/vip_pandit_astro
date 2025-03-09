@@ -25,10 +25,6 @@ class LanguageHi extends Languages {
       "अपनी समस्याओं का संपूर्ण समाधान प्राप्त करें";
 
   @override
-  String get exploreNowToExperience =>
-      "फायदे का अनुभव करने के लिए अभी एक्सप्लोर करें";
-
-  @override
   String get loremIpsum =>
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore";
 
@@ -43,7 +39,7 @@ class LanguageHi extends Languages {
 
   @override
   String get consultHundredsOfExpert =>
-      "सैकड़ों विशेषज्ञ ज्योतिषियों से परामर्श लें और अपनी समस्याओं के लिए प्रमाणित समाधान प्राप्त करें।";
+      "consultHundredsOfExpertवीआईपी पंडित के साथ खुद को पंजीकृत करें और अपने ज्योतिष कौशल से लोगों की मदद करना शुरू करें";
 
   @override
   String get and => "और";
@@ -409,7 +405,7 @@ class LanguageHi extends Languages {
 
   @override
   String get welcome_to_aiAstro =>
-      "एआई ज्योतिष में आपका स्वागत है, अब आप अपनी समस्याओं के समाधान से कुछ कदम दूर हैं";
+      "VIP Pandit Astro में आपका स्वागत है, आपका खाता समीक्षाधीन है! जब आपका खाता उपयोग के लिए तैयार हो जाएगा तो हम आपको अपडेट करेंगे";
 
   @override
   String get dob => "जन्मतिथि";
@@ -451,6 +447,14 @@ class LanguageHi extends Languages {
 
   @override
   String get dob_short => "जन्मतिथि";
+
+
+  @override
+  String get exploreNowToExperience => "अपने ज्योतिष कौशल और विशेषज्ञता से लोगों की मदद करें";
+
+  @override
+  String get onbord_des => "वीआईपी पंडित के साथ खुद को पंजीकृत करें और अपने ज्योतिष कौशल से लोगों की मदद करना शुरू करें";
+
 
   @override
   String get no => "नहीं";

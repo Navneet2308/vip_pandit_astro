@@ -14,7 +14,7 @@ abstract class Languages {
   String get aiAstrologyS;
   String get findCompleteSolutionToYourProblems;
   String get exploreNowToExperience;
-  String get loremIpsum;
+  String get onbord_des;
   String get getStarted;
   String get pickYourPreferredLanguage;
   String get loginToAiAstrology;

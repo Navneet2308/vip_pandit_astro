@@ -71,7 +71,7 @@ class _OTPViewState extends State<OTPView> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     alignment: Alignment.center,
                     child: Text(
-                      authProvider.mobile_no!,
+                      "+91 "+authProvider.mobile_no!,
                       style: mediumTextStyle(
                           fontSize: dimen14, color: secondaryTextColor),
                     ),
@@ -181,7 +181,7 @@ class _OTPViewState extends State<OTPView> {
                             text: Languages.of(context)!.bySigningUpYouAgree,
                           ),
                           TextSpan(
-                            text: Languages.of(context)!.termsAndConditions,
+                            text: " "+Languages.of(context)!.termsAndConditions,
                             style: regularTextStyle(
                                 fontSize: 13.0, color: secondaryTextColor),
                             recognizer: TapGestureRecognizer()

@@ -231,6 +231,10 @@ Widget buildTextField(
     keyboardType = TextInputType.emailAddress;
     maxLength = 100;
   }
+  else if (label.toLowerCase().contains("phone")) {
+    keyboardType = TextInputType.number;
+    maxLength = 10;
+  }
   else if (label.toLowerCase().contains("number")) {
     keyboardType = TextInputType.number;
     maxLength = 100;
