@@ -8,6 +8,7 @@ import '../../constance/my_colors.dart';
 import '../../constance/textstyle.dart';
 import '../../model/AstroEarning.dart';
 import '../../provider/dashboard_provider.dart';
+import '../../utils/ui_utils.dart';
 import '../bottomsheet/RechargeWalletBottomSheet.dart';
 
 class WalletView extends StatelessWidget {
@@ -134,6 +135,7 @@ class WalletView extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 16),
+             provider.earningList.length>0?
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
@@ -147,7 +149,7 @@ class WalletView extends StatelessWidget {
                     },
                   ),
                 ),
-              )
+              ):Expanded(child: UiUtils.noDataAvailableWidget())
 
 
             ],

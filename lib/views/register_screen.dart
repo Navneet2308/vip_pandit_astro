@@ -17,6 +17,7 @@ import '../constance/commonString.dart';
 import '../constance/common_Widget.dart';
 import '../constance/language/language.dart';
 import '../constance/textstyle.dart';
+import '../provider/LanguageSelectionProvider.dart';
 import '../utils/ui_utils.dart';
 import 'package:provider/provider.dart';
 
@@ -29,6 +30,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      authProvider.clearRegisterData(context);
       authProvider.fetchLanguageData();
       authProvider.fetchCategory();
       authProvider.fetchSkills();
@@ -132,6 +134,7 @@ class RegisterScreen extends StatelessWidget {
                     children: [
                       const SizedBox(height: 20),
                       buildTextField(
+                        context,
                         Languages.of(context)!.fullName,
                         Languages.of(context)!.enterFullName,
                         provider.updateName,
@@ -139,6 +142,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       buildTextField(
+                        context,
                         Languages.of(context)!.emailAddress,
                         Languages.of(context)!.enterEmailAddress,
                         provider.updateEmail,
@@ -158,6 +162,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       buildTextField(
+                        context,
                         Languages.of(context)!.currentCity,
                         Languages.of(context)!.enterCurrentCity,
                         provider.updateCity,
@@ -165,6 +170,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       buildTextField(
+                        context,
                         Languages.of(context)!.currentFullAddress,
                         Languages.of(context)!.enterFullAddress,
                         provider.updateAddress,
@@ -177,6 +183,7 @@ class RegisterScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             buildHalfWidthTextField(
+                              context,
                               Languages.of(context)!.pincode,
                               Languages.of(context)!.enterPincode,
                               provider.updatePincode,
@@ -216,8 +223,9 @@ class RegisterScreen extends StatelessWidget {
                           Languages.of(context)!.astro_Exper_cat,
                           "e.g., Love & Relationship",
                           (List<AstrologyCategoryModel> selected) {
-                        provider.selected_catModel = selected;
-                      }, provider.selected_catModel, provider.categoryList,
+                            provider.selected_catModel = selected;
+                           },
+                          provider.selected_catModel, provider.categoryList,
                           provider),
                       const SizedBox(height: 10),
                       provider.buildSkillHalfWidthDropdownField(
@@ -249,6 +257,7 @@ class RegisterScreen extends StatelessWidget {
                               width: 15,
                             ),
                             buildHalfWidthTextField(
+                              context,
                               Languages.of(context)!.exp_in_year,
                               Languages.of(context)!.enter_exp,
                               provider.updateExperience,
@@ -264,6 +273,7 @@ class RegisterScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             buildHalfWidthTextField(
+                              context,
                               Languages.of(context)!.chatChargePerMin,
                               Languages.of(context)!.enter_charge,
                               provider.updateChatCharge,
@@ -273,6 +283,7 @@ class RegisterScreen extends StatelessWidget {
                               width: 15,
                             ),
                             buildHalfWidthTextField(
+                              context,
                               Languages.of(context)!.callChargePerMin,
                               Languages.of(context)!.enter_charge,
                               provider.updateCallCharge,
@@ -283,6 +294,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       buildTextFieldProfileBio(
+                        context,
                         Languages.of(context)!.astor_profile_bio,
                         Languages.of(context)!.astor_profile_bio_detail,
                         provider.updateProfileBio,
@@ -290,6 +302,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       buildTextField(
+                        context,
                         Languages.of(context)!.adhar_card_number,
                         Languages.of(context)!.enter_adhar_card_number,
                         provider.updateAadharNumber,
@@ -368,7 +381,7 @@ class RegisterScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => WebView(url: termsConditions)),
+                                  builder: (_) => WebView(heading: Languages.of(context)!.termsAndConditions,url: termsConditions)),
                             );
                           },
                       ),
@@ -385,7 +398,7 @@ class RegisterScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => WebView(url: privacyPolicy)),
+                                  builder: (_) => WebView(heading: Languages.of(context)!.privacyPolicy,url: privacyPolicy)),
                             );
                           },
                       ),
@@ -411,6 +424,7 @@ class RegisterScreen extends StatelessWidget {
     String selectedValue,
     List<String> items,
   ) {
+    print("selectedValue"+selectedValue);
     return Flexible(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -423,12 +437,10 @@ class RegisterScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8),
             child: Container(
               height: 50,
-             
               child: DropdownButtonFormField<String>(
                 value: selectedValue.isEmpty ? null : selectedValue,
                 decoration: InputDecoration(
                   // labelText: label,
-                  hintText: hintText,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -449,6 +461,7 @@ class RegisterScreen extends StatelessWidget {
       ),
     );
   }
+
   Widget _builbfUploadButton(AuthProvider provider, String label,
       void Function(String) onPressed, String? fileName) {
     return Expanded(
@@ -507,6 +520,7 @@ class RegisterScreen extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildbUploadButton(AuthProvider provider, String label,
       void Function(String) onPressed, String? fileName) {
     return Expanded(

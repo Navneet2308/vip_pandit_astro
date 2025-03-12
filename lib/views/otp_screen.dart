@@ -190,7 +190,7 @@ class _OTPViewState extends State<OTPView> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (_) =>
-                                          WebView(url: termsConditions)),
+                                          WebView(heading: Languages.of(context)!.bySigningUpYouAgree,url: termsConditions)),
                                 );
                               },
                           ),
@@ -209,7 +209,7 @@ class _OTPViewState extends State<OTPView> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (_) =>
-                                          WebView(url: privacyPolicy)),
+                                          WebView(heading: Languages.of(context)!.privacyPolicy,url: privacyPolicy)),
                                 );
                               },
                           ),

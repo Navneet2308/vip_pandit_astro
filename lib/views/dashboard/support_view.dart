@@ -13,6 +13,10 @@ import '../../utils/function_utils.dart';
 class SupportView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final provider = Provider.of<DashboardProvider>(context, listen: false);
+      provider.fetchHelpDeskData();
+    });
     return Consumer<DashboardProvider>(builder: (context, provider, child) {
       return Scaffold(
         backgroundColor: bg,
@@ -39,7 +43,15 @@ class SupportView extends StatelessWidget {
                     child: Column(
                       children: [
                         GestureDetector(
-                            onTap: () {
+                            onTap: () async {
+                              final whatsappUrl = '${provider.helpdesk_data.whatsappChatLink}';
+                              await launch(whatsappUrl);
+                              if (await canLaunch(whatsappUrl)) {
+                              await launch(whatsappUrl);
+                              } else {
+                              // Handle the error if the email client cannot be opened
+                              print('Could not open email client');
+                              }
                             },
                             child: Container(
 
@@ -79,7 +91,7 @@ class SupportView extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () async {
-                            final phoneUrl = 'tel:+918978897889';
+                            final phoneUrl = 'tel:+91${provider.helpdesk_data.supportPhone}';
                             if (await canLaunch(phoneUrl)) {
                               await launch(phoneUrl);
                             } else {
@@ -98,7 +110,7 @@ class SupportView extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                "${Languages.of(context)!.call_us} @ 918978897889",
+                                "${Languages.of(context)!.call_us} @ +91${provider.helpdesk_data.supportPhone}",
                                 style: regularTextStyle(
                                     fontSize: 16.0, color: colWhite),
                               ),
@@ -118,7 +130,7 @@ class SupportView extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () async {
-                            final emailUrl = 'mailto:support@aiastrologys.com';
+                            final emailUrl = 'mailto:${provider.helpdesk_data.supportEmail}';
                             await launch(emailUrl);
                             if (await canLaunch(emailUrl)) {
                               await launch(emailUrl);
@@ -139,7 +151,7 @@ class SupportView extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                "${Languages.of(context)!.mail_us} @ support@aiastrologys.com",
+                                "${Languages.of(context)!.mail_us} @ ${provider.helpdesk_data.supportEmail}",
                                 style: regularTextStyle(
                                     fontSize: dimen16, color: colWhite),
                               ),

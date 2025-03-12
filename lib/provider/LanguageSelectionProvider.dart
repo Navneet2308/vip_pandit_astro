@@ -14,8 +14,6 @@ class BottomSheetSelectionProvider extends ChangeNotifier {
   List<AstrologySkillModel> _selectedastoSkill = [];
   List<AstrologySkillModel> get selectedastoSkill => _selectedastoSkill;
 
-
-
   void toggleLanguage(LanguagesModel language) {
     if (_selectedLanguages.contains(language)) {
       _selectedLanguages.remove(language);

@@ -82,7 +82,7 @@ class ConsultantionView extends StatelessWidget {
                           },
                         ),
                       )
-                    : Container(),
+                    : Expanded(child: UiUtils.noDataAvailableWidget()),
               ],
             ),
           ),

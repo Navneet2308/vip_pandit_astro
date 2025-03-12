@@ -11,10 +11,13 @@ abstract class Languages {
   String get consultation_Schedule;
   String get appName ;
   String get aiAstrology;
+  String get kyc_pending;
+  String get kyc_approved;
   String get aiAstrologyS;
   String get findCompleteSolutionToYourProblems;
   String get exploreNowToExperience;
   String get onbord_des;
+  String get sugggest_time_interview;
   String get getStarted;
   String get pickYourPreferredLanguage;
   String get loginToAiAstrology;
@@ -79,7 +82,6 @@ abstract class Languages {
   String get preRegistrationScreeningQuiz;
   String get astrologerNeedToComplete;
   String get howManyTotalRashisInVedicAstrology;
-  String get suggestTimeForYourInterview;
   String get beforeStartUsingThisPlatform;
   String get audioVideoCall;
   String get activeConsultation;

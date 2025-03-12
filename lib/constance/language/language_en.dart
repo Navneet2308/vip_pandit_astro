@@ -120,7 +120,7 @@ class LanguageEn extends Languages{
 
   @override
   String get enterOtpWhichhas =>
-      "Register yourself with VIP Pandit and start helping people with you astrology skills";
+      "Enter OTP which has been sent to your mobile number and complete your account verification.";
 
   @override
   String get by_signing_up => "By signing up, you agree to our";
@@ -181,7 +181,11 @@ class LanguageEn extends Languages{
   String get beforeStartUsingThisPlatform => "Before start using this platform, our expert astrologers will review your knowledge and experience as this will effect the future of our customers.";
 
   @override
-  String get suggestTimeForYourInterview => "Suggest Time for Your Interview";
+  String get kyc_pending => "KYC Pending";
+
+  @override
+  String get kyc_approved => "KYC Approved";
+
 
   @override
   String get activeConsultation => "Active Consultation";
@@ -440,6 +444,9 @@ class LanguageEn extends Languages{
   String get walletHistory => "Wallet History";
 
   @override
+  String get sugggest_time_interview => "Suggest Time for interview";
+
+  @override
   String get walletTransactionsData => "Wallet Transactions Data";
 
   @override
@@ -457,7 +464,7 @@ class LanguageEn extends Languages{
   String get resend_otp => "Resend OTP";
 
   @override
-  String get welcome_to_aiAstro => "Welcome to Ai Astrology, Your Account is Under Review! We will update you when your account is ready to use";
+  String get welcome_to_aiAstro => "Welcome to VIP Pandit Astro, Your Account is Under Review! We will update you when your account is ready to use";
 
   @override
   String get account_under_Review => "Account Under Review!";

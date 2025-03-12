@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'language/language.dart';
 import 'my_colors.dart';
 
 Widget buildDatePickerField(
@@ -29,13 +30,13 @@ Widget buildDatePickerField(
           DateTime today = DateTime.now();
           DateTime? pickedDate = await showDatePicker(
             context: context,
-            initialDate: label.toLowerCase().contains("interview")
+            initialDate: label==(Languages.of(context)!.chatChargePerMin)
                 ? today
                 : DateTime(2010),
-            firstDate: label.toLowerCase().contains("interview")
+            firstDate: label.toLowerCase().contains(Languages.of(context)!.sugggest_time_interview)
                 ? today
                 : DateTime(1900),
-            lastDate: label.toLowerCase().contains("interview")
+            lastDate: label.toLowerCase().contains(Languages.of(context)!.sugggest_time_interview)
                 ? DateTime(2100)
                 : DateTime(2025),
           );
@@ -68,6 +69,7 @@ Widget buildDatePickerField(
 }
 
 Widget buildHalfWidthTextField(
+    BuildContext context,
   String label,
   String hintText,
   Function(String) onChanged,
@@ -76,13 +78,17 @@ Widget buildHalfWidthTextField(
   int? maxLength;
   TextInputType keyboardType = TextInputType.text;
 
-  if (label.toLowerCase().contains("pincode")) {
+  if (label==(Languages.of(context)!.pincode)){
     keyboardType = TextInputType.number;
     maxLength = 6;
-  } else if (label.toLowerCase().contains("experience")) {
+  } else if (label==(Languages.of(context)!.exp_in_year)) {
     keyboardType = TextInputType.number;
     maxLength = 10;
-  } else if (label.toLowerCase().contains("charge")) {
+  } else if (label==(Languages.of(context)!.callChargePerMin)) {
+    keyboardType = TextInputType.number;
+    maxLength = 10;
+  }
+  else if (label==(Languages.of(context)!.chatChargePerMin)) {
     keyboardType = TextInputType.number;
     maxLength = 10;
   }
@@ -108,7 +114,6 @@ Widget buildHalfWidthTextField(
                 Expanded(
                   child: TextFormField(
                     initialValue: value,
-                    // Set the initial value directly
                     onChanged: onChanged,
                     keyboardType: keyboardType,
                     maxLength: maxLength,
@@ -133,6 +138,7 @@ Widget buildHalfWidthTextField(
 }
 
 Widget buildTextFieldProfileBio(
+    BuildContext context,
   String label,
   String hintText,
   Function(String) onChanged,
@@ -141,20 +147,24 @@ Widget buildTextFieldProfileBio(
   int? maxLength;
   TextInputType keyboardType = TextInputType.text;
 
-  if (label.toLowerCase().contains("email")) {
+  if (label==(Languages.of(context)!.emailAddress))
+    {
     keyboardType = TextInputType.emailAddress;
     maxLength = 100;
-  } else if (label.toLowerCase().contains("number") ||
-      label.toLowerCase().contains("charge") ||
-      label.toLowerCase().contains("pincode")) {
+  } else if (label==(Languages.of(context)!.phoneNumber) ||
+      label==(Languages.of(context)!.chatChargePerMin) ||
+      label==(Languages.of(context)!.callChargePerMin)
+  ) {
     keyboardType = TextInputType.number;
     maxLength = 10; // Adjust as needed
-  } else if (label.toLowerCase().contains("date")) {
-    keyboardType = TextInputType.datetime;
-  } else if (label.toLowerCase().contains("phone")) {
+  }
+  else if ( label==(Languages.of(context)!.pincode)) {
+    keyboardType = TextInputType.number;
+    maxLength = 6;
+  }else if ( label==(Languages.of(context)!.phoneNumber)) {
     keyboardType = TextInputType.phone;
     maxLength = 10;
-  } else if (label.toLowerCase().contains("aadhar")) {
+  } else if ( label==(Languages.of(context)!.adhar_card_number)) {
     keyboardType = TextInputType.number;
     maxLength = 12;
   }
@@ -206,19 +216,22 @@ Widget buildTextFieldProfileBio(
     ],
   );
 }
+
 class UpperCaseTextFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue,
-      TextEditingValue newValue,
-      ) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     return newValue.copyWith(
       text: newValue.text.toUpperCase(),
       selection: newValue.selection,
     );
   }
 }
+
 Widget buildTextField(
+    BuildContext context,
   String label,
   String hintText,
   Function(String) onChanged,
@@ -227,37 +240,44 @@ Widget buildTextField(
   int? maxLength;
   TextInputType keyboardType = TextInputType.text;
 
-  if (label.toLowerCase().contains("email")) {
-    keyboardType = TextInputType.emailAddress;
-    maxLength = 100;
-  }
-  else if (label.toLowerCase().contains("phone")) {
-    keyboardType = TextInputType.number;
-    maxLength = 10;
-  }
-  else if (label.toLowerCase().contains("number")) {
-    keyboardType = TextInputType.number;
-    maxLength = 100;
-  }
- else if (label.toLowerCase().contains("email")) {
-    keyboardType = TextInputType.emailAddress;
-    maxLength = 22;
-  }
-  else if (label.toLowerCase().contains("number") ||
-      label.toLowerCase().contains("charge") ||
-      label.toLowerCase().contains("pincode")) {
-    keyboardType = TextInputType.number;
-    maxLength = 10; // Adjust as needed
-  } else if (label.toLowerCase().contains("date")) {
-    keyboardType = TextInputType.datetime;
-  } else if (label.toLowerCase().contains("phone")) {
-    keyboardType = TextInputType.phone;
-    maxLength = 10;
-  } else if (label.toLowerCase().contains("aadhar")) {
+  if (label==(Languages.of(context)!.adhar_card_number)) {
     keyboardType = TextInputType.number;
     maxLength = 12;
   }
-
+  else if (label==(Languages.of(context)!.account_number)) {
+    keyboardType = TextInputType.number;
+    maxLength = 18;
+  }
+  else if (label==(Languages.of(context)!.emailAddress)) {
+    keyboardType = TextInputType.emailAddress;
+    maxLength = 100;
+  } else if (label==(Languages.of(context)!.phoneNumber)) {
+    keyboardType = TextInputType.number;
+    maxLength = 10;
+  }  else if (label==(Languages.of(context)!.emailAddress)) {
+    keyboardType = TextInputType.emailAddress;
+    maxLength = 22;
+  } else if (label==(Languages.of(context)!.phoneNumber) ||
+      label==(Languages.of(context)!.chatChargePerMin) ||
+      label==(Languages.of(context)!.callChargePerMin)
+ ) {
+    keyboardType = TextInputType.number;
+    maxLength = 10; // Adjust as needed
+  }
+  else if ( label==(Languages.of(context)!.bank_ifsc_code)) {
+    keyboardType = TextInputType.number;
+    maxLength = 11;
+  }
+  else if ( label==(Languages.of(context)!.pincode)) {
+    keyboardType = TextInputType.number;
+    maxLength = 6;
+  }
+  else if (label==(Languages.of(context)!.date_time)) {
+    keyboardType = TextInputType.datetime;
+  }
+  else if (label==(Languages.of(context)!.dateOfBirth)) {
+    keyboardType = TextInputType.datetime;
+  }
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -286,9 +306,10 @@ Widget buildTextField(
                   // Sets the initial value without a controller
                   onChanged: onChanged,
                   inputFormatters: [
-                    if (label.toLowerCase().contains("ifsc")) UpperCaseTextFormatter(),
-                    if (label.toLowerCase().contains("bank name")) UpperCaseTextFormatter(),
-
+                    if (label==(Languages.of(context)!.bank_ifsc_code))
+                      UpperCaseTextFormatter(),
+                    if (label==(Languages.of(context)!.bank_name))
+                      UpperCaseTextFormatter(),
                   ],
                   style: regularTextStyle(fontSize: 14.0, color: colBlack),
                   keyboardType: keyboardType,

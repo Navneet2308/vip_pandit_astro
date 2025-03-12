@@ -6,6 +6,7 @@ import '../../constance/my_colors.dart';
 import '../../constance/textstyle.dart';
 import '../../provider/dashboard_provider.dart';
 import '../../utils/function_utils.dart';
+import '../../utils/ui_utils.dart';
 
 class FollowersView extends StatelessWidget {
   @override
@@ -22,28 +23,27 @@ class FollowersView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    Languages.of(context)!.my_followers,
-                    style: mediumTextStyle(fontSize: dimen17, color: black),
-                  ),
-                  SizedBox(height: 3),
-                  Text(
-                    Languages.of(context)!.list_of_customer_following_you,
-                    style:
-                        regularTextStyle(fontSize: dimen13, color: lightGrey),
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: provider.followersList.length,
-                    itemBuilder: (context, index) {
-                      final follower = provider.followersList[index];
-                      return followerCard(context,follower);
-                    },
-                  ),
-                ],
+              Text(
+                Languages.of(context)!.my_followers,
+                style: mediumTextStyle(fontSize: dimen17, color: black),
+              ),
+              SizedBox(height: 3),
+              Text(
+                Languages.of(context)!.list_of_customer_following_you,
+                style:
+                    regularTextStyle(fontSize: dimen13, color: lightGrey),
+              ),
+              provider.followersList.length>0?
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: provider.followersList.length,
+                itemBuilder: (context, index) {
+                  final follower = provider.followersList[index];
+                  return followerCard(context,follower);
+                },
+              ):Container(
+                height: 500,
+                child: UiUtils.noDataAvailableWidget(),
               ),
             ],
           ),

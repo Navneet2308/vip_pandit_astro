@@ -61,7 +61,7 @@ class AuthProvider extends ChangeNotifier {
   String city = '';
   String address = '';
   String pincode = '';
-  String gender = '';
+  String gender = 'Male';
   String experience = '';
   String chatCharge = '';
   String callCharge = '';
@@ -834,6 +834,37 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+  clearRegisterData(BuildContext context) {
+    final botttomsheet_provider = Provider.of<BottomSheetSelectionProvider>(context, listen: false);
+
+    botttomsheet_provider.selectedastoSkill.clear();
+    botttomsheet_provider.selectedastoCat.clear();
+    botttomsheet_provider.selectedLanguages.clear();
+
+    name = '';
+    email = '';
+    dob = '';
+    doi = '';
+    city = '';
+    address = '';
+    pincode = '';
+    gender = 'Male';
+    experience = '';
+    chatCharge = '';
+    callCharge = '';
+    profileBio = '';
+    profileImage = '';
+    aadharNumber = '';
+    aadharFrontPhoto = '';
+    aadharBackPhoto = '';
+    _quizList = [];
+    _languageList = [];
+    _skillList = [];
+    selected_langauge = [];
+    selected_catModel = [];
+    selected_Skill = [];
+  }
+
 
   // Method to verify OTP
   verifyOtp(

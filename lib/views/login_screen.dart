@@ -79,6 +79,7 @@ class LoginView extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 0),
                         child: buildTextField(
+                          context,
                           Languages.of(context)!.phoneNumber,
                           Languages.of(context)!.enterYourMobileNumber,
                           authProvider.updateMobile,
@@ -141,7 +142,7 @@ class LoginView extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => WebView(url: termsConditions)),
+                                  builder: (_) => WebView(heading:Languages.of(context)!.termsAndConditions,url: termsConditions)),
                             );
                           },
                       ),
@@ -159,7 +160,7 @@ class LoginView extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => WebView(url: privacyPolicy)),
+                                  builder: (_) => WebView(heading: Languages.of(context)!.privacyPolicy,url: privacyPolicy)),
                             );
                           },
                       ),

@@ -8,7 +8,16 @@ class LanguageHi extends Languages {
   String get aiAstrology => "VIP Pandit Astro v1.0.0a";
 
   @override
-  String get aiAstrologyS => "VIP Pandit Astro’s";
+  String get sugggest_time_interview => "साक्षात्कार के लिए समय सुझाएं";
+
+  @override
+  String get kyc_pending => "केवाईसी लंबित";
+
+  @override
+  String get kyc_approved => "केवाईसी स्वीकृत";
+
+  @override
+  String get aiAstrologyS => "VIP Pandit Astro";
 
   @override
   String get consultation_Schedule => "परामर्श अनुसूची";
@@ -35,7 +44,7 @@ class LanguageHi extends Languages {
   String get pickYourPreferredLanguage => "अपनी पसंदीदा भाषा चुनें";
 
   @override
-  String get loginToAiAstrology => "Ai ज्योतिष में लॉगिन करें";
+  String get loginToAiAstrology => "VIP Pandit Astro ज्योतिष में लॉगिन करें";
 
   @override
   String get consultHundredsOfExpert =>
@@ -107,7 +116,7 @@ class LanguageHi extends Languages {
 
   @override
   String get enterOtpWhichhas =>
-      "वह OTP दर्ज करें जो आपके मोबाइल नंबर पर भेजा गया है और अपने खाते को पूरी तरह से सत्यापित करें।";
+      "अपने मोबाइल नंबर पर भेजा गया ओटीपी दर्ज करें और अपना खाता सत्यापन पूरा करें।";
 
   @override
   String get by_signing_up => "साइन अप करके, आप हमारी सहमति देते हैं";
@@ -154,9 +163,6 @@ class LanguageHi extends Languages {
   String get beforeStartUsingThisPlatform =>
       "इस प्लेटफ़ॉर्म का उपयोग शुरू करने से पहले, हमारे विशेषज्ञ ज्योतिषी आपके ज्ञान और अनुभव की समीक्षा करेंगे क्योंकि यह हमारे ग्राहकों के भविष्य को प्रभावित करेगा।";
 
-  @override
-  String get suggestTimeForYourInterview =>
-      "अपने साक्षात्कार के लिए समय सुझाएं";
 
   @override
   String get activeConsultation => "सक्रिय परामर्श";
@@ -371,7 +377,7 @@ class LanguageHi extends Languages {
   String get refundPolicies => "रिफंड नीति";
 
   @override
-  String get aboutAiAstrology => "एआई ज्योतिष के बारे में";
+  String get aboutAiAstrology => "VIP Pandit Astro के बारे में";
 
   @override
   String get logout => "लॉगआउट";
@@ -414,7 +420,7 @@ class LanguageHi extends Languages {
   String get partner_name => "साथी का नाम";
 
   @override
-  String get partner_dob => "साथी की जन्मतिथि";
+  String get partner_dob => "साiथी की जन्मतिथि";
 
   @override
   String get partner_address => "साथी का पता";

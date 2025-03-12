@@ -112,36 +112,10 @@ class EditBank extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 10),
-                         provider.bank_Ac_approved==3? Column(
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [   Container(
-                              height: 33.0,
-                              width: double.infinity,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              padding: const EdgeInsets.symmetric(vertical: 0),
-                              decoration: const BoxDecoration(
-                                  color: rejected_btn_color,
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(0))),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  Languages.of(context)!.kyc_rejected,
-                                  style: mediumTextStyle(
-                                      fontSize: dimen14, color: colWhite),
-                                ),
-                              ),
-                            ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 20),
-                                child: Text(provider.bank_Ac_rejected_reason,textAlign: TextAlign.start,style: regularTextStyle(fontSize: dimen14, color: warning_txt_color),),
-                              ),],
-                          ):Container()
-                       ,
-
-                          const SizedBox(height: 20),
+                          bankStatusWidget(context,provider),
+                          const SizedBox(height: 10),
                           buildTextField(
+                            context,
                             Languages.of(context)!.bank_name,
                             Languages.of(context)!.enter_bank_name,
                             provider.updateBankName,
@@ -149,6 +123,7 @@ class EditBank extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           buildTextField(
+                            context,
                             Languages.of(context)!.bank_ifsc_code,
                             Languages.of(context)!.enter_bank_ifsc_code,
                             provider.updateBankIfsc,
@@ -156,6 +131,7 @@ class EditBank extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           buildTextField(
+                            context,
                             Languages.of(context)!.account_number,
                             Languages.of(context)!.enter_account_number,
                             provider.updateBankAccount,
@@ -163,6 +139,7 @@ class EditBank extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           buildTextField(
+                            context,
                             Languages.of(context)!.account_holder_name,
                             Languages.of(context)!.bank_account_holder_name,
                             provider.updateBankHolder,
@@ -212,6 +189,60 @@ class EditBank extends StatelessWidget {
   }
 
 
+  Widget bankStatusWidget(BuildContext context,provider) {
+    Color backgroundColor;
+    String statusText;
+
+    switch (provider.bank_Ac_approved) {
+      case 0: // Pending
+        backgroundColor = Colors.yellow;
+        statusText = Languages.of(context)!.kyc_pending;
+        break;
+      case 1: // Approved
+        backgroundColor = Colors.green;
+        statusText = Languages.of(context)!.kyc_approved;
+        break;
+      case 3: // Rejected
+        backgroundColor = rejected_btn_color;
+        statusText = Languages.of(context)!.kyc_rejected;
+        break;
+      default:
+        return Container();
+    }
+
+    return
+      Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          height: 33.0,
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 0),
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: const BorderRadius.all(Radius.circular(2)),
+          ),
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              statusText,
+              style: mediumTextStyle(fontSize: dimen14, color: colWhite),
+            ),
+          ),
+        ),
+        if (provider.bank_Ac_approved == 3) // Show reason only when rejected
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              provider.bank_Ac_rejected_reason,
+              textAlign: TextAlign.start,
+              style: regularTextStyle(fontSize: dimen14, color: warning_txt_color),
+            ),
+          ),
+      ],
+    );
+  }
 
 
 

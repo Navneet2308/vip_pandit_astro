@@ -111,6 +111,7 @@ class EditProfile extends StatelessWidget {
                     children: [
                       const SizedBox(height: 20),
                       buildTextField(
+                        context,
                         Languages.of(context)!.fullName,
                         Languages.of(context)!.enterFullName,
                         provider.updateName,
@@ -118,6 +119,7 @@ class EditProfile extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       buildTextField(
+                        context,
                         Languages.of(context)!.emailAddress,
                         Languages.of(context)!.enterEmailAddress,
                         provider.updateEmail,
@@ -134,6 +136,7 @@ class EditProfile extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       buildTextField(
+                        context,
                         Languages.of(context)!.currentCity,
                         Languages.of(context)!.enterCurrentCity,
                         provider.updateCity,
@@ -141,6 +144,7 @@ class EditProfile extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       buildTextField(
+                        context,
                         Languages.of(context)!.currentFullAddress,
                         Languages.of(context)!.enterFullAddress,
                         provider.updateAddress,
@@ -153,6 +157,7 @@ class EditProfile extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             buildHalfWidthTextField(
+                              context,
                               Languages.of(context)!.pincode,
                               Languages.of(context)!.enterPincode,
                               provider.updatePincode,
@@ -227,6 +232,7 @@ class EditProfile extends StatelessWidget {
                               width: 15,
                             ),
                             buildHalfWidthTextField(
+                              context,
                               Languages.of(context)!.exp_in_year,
                               Languages.of(context)!.enter_exp,
                               provider.updateExperience,
@@ -242,6 +248,7 @@ class EditProfile extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             buildHalfWidthTextField(
+                              context,
                               Languages.of(context)!.chatChargePerMin,
                               Languages.of(context)!.enter_charge,
                               provider.updateChatCharge,
@@ -251,6 +258,7 @@ class EditProfile extends StatelessWidget {
                               width: 15,
                             ),
                             buildHalfWidthTextField(
+                              context,
                               Languages.of(context)!.callChargePerMin,
                               Languages.of(context)!.enter_charge,
                               provider.updateCallCharge,
@@ -261,6 +269,7 @@ class EditProfile extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       buildTextFieldProfileBio(
+                        context,
                         Languages.of(context)!.astor_profile_bio,
                         Languages.of(context)!.astor_profile_bio_detail,
                         provider.updateProfileBio,

@@ -31,6 +31,7 @@ import '../model/ScheduleResponse.dart';
 import '../model/astro_skill_model.dart';
 import '../model/consultation_response.dart';
 import '../model/get_languages_model.dart';
+import '../model/helpDesk.dart';
 import '../model/messageModel.dart';
 import '../model/quiz_response.dart';
 import '../model/update_consultationModel.dart';
@@ -178,6 +179,7 @@ class DashboardProvider extends ChangeNotifier {
 
   int? wallet_amount = 0;
 
+  Helpdesk helpdesk_data = Helpdesk();
   List<LanguagesModel> selected_langauge = [];
   List<AstrologyCategoryModel> selected_catModel = [];
   List<AstrologySkillModel> selected_Skill = [];
@@ -203,6 +205,17 @@ class DashboardProvider extends ChangeNotifier {
       Languages.of(context)!.today_chat_earning,
       Languages.of(context)!.today_call_earning,
     ];
+  }
+
+  Future<void> fetchHelpDeskData() async {
+    try {
+      final response = await apiService.getAuth(ApiPath.getHelpDesk, {});
+      helpdesk_data = Helpdesk.fromJson(response);
+
+    } catch (error) {
+    } finally {
+      notifyListeners();
+    }
   }
 
   // Fetch User Data
@@ -240,6 +253,18 @@ class DashboardProvider extends ChangeNotifier {
     } else {
       showErrorSnackBar(context, from_validation);
     }
+  }
+
+  void remove_day_Field(String day, int index) {
+    if (day_controllers.containsKey(day) && day_controllers[day]!.length > 1) {
+      day_controllers[day]!.removeAt(index);
+      notifyListeners();
+    }
+    else
+      {
+        day_controllers[day]![0].clear();
+        notifyListeners();
+      }
   }
 
   Future<void> changeDutyStatus(BuildContext context, int duty_status) async {
@@ -437,9 +462,9 @@ class DashboardProvider extends ChangeNotifier {
     bool atLeastOneDate = day_controllers.values.any((controllers) =>
         controllers.any((controller) => controller.text.isNotEmpty));
     if (atLeastOneDate) {
-      return "Please enter at least one schedule"; // At least one date is present.
+      return ""; // At least one date is present.
     } else {
-      return null; // No date is provided.
+      return "Please enter at least one schedule"; // At least one date is present.
     }
   }
 
@@ -1389,10 +1414,13 @@ class DashboardProvider extends ChangeNotifier {
     try {
       final response = await apiService.getAuth(ApiPath.getDutyStatus, {});
       if (response != null && response is Map<String, dynamic>) {
+        // is_duty_on = response['Duty Status']=="True";
         dutyStatus = response['Duty Status'];
         is_duty_on = response['duty_status'] == "1" ? true : false;
-      } else {}
+      } else {
+      }
     } catch (error) {
+
     } finally {
       notifyListeners();
     }

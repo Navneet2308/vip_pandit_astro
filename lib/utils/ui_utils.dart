@@ -266,21 +266,21 @@ class UiUtils {
           Languages.of(context)!.termsAndConditions: () => Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (_) => WebView(url: termsConditions)),
+                builder: (_) => WebView(heading:Languages.of(context)!.termsAndConditions ,url: termsConditions)),
           ),
           Languages.of(context)!.privacyPolicies: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (_) => WebView(url: privacyPolicy)),
+            MaterialPageRoute(builder: (_) => WebView(heading: Languages.of(context)!.privacyPolicies,url: privacyPolicy)),
           ),
           Languages.of(context)!.refundPolicies: () => Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (_) => WebView(url: refundCancellationPolicy)),
+                builder: (_) => WebView(heading:Languages.of(context)!.refundPolicies ,url: refundCancellationPolicy)),
           ),
           Languages.of(context)!.aboutAiAstrology: () => Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (_) => WebView(url: refundCancellationPolicy)),
+                builder: (_) => WebView(heading: Languages.of(context)!.aboutAiAstrology,url: refundCancellationPolicy)),
           ),
           Languages.of(context)!.language: () => GlobalBottomSheet.show(
               context: context, child: LanguageSelectionScreen(from: "home")),
@@ -297,6 +297,26 @@ class UiUtils {
         )
             .value();
       },
+    );
+  }
+
+ static Widget noDataAvailableWidget() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.info_outline, // You can change this icon as needed
+            size: 50,
+            color:lightText,
+          ),
+          SizedBox(height: 10),
+          Text(
+            "No Data Available",
+            style: regularTextStyle(fontSize: dimen16, color: lightText),
+          ),
+        ],
+      ),
     );
   }
 

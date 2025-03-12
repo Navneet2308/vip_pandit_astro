@@ -1,6 +1,8 @@
 class ApiPath{
   static const String baseUrl = 'https://aiastrology.serverx.in/api/astrologer/';
   static const String getLanguages = 'getLanguages';
+  static const String getHelpDesk = 'getHelpDesk';
+
   static const String getAstroCategory = 'getAstroCategory';
   static const String getAstroSkills = 'getAstroSkills';
   static const String getQuiz = 'getQuiz';

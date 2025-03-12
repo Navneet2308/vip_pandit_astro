@@ -22,255 +22,226 @@ class ConsultantionSchedule extends StatelessWidget {
     return Scaffold(
       backgroundColor: bg,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Consumer<DashboardProvider>(
-            builder: (context, provider, child) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  SizedBox(height: 30),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              Languages.of(context)!.consultation_Schedule,
-                              style: mediumTextStyle(
-                                  fontSize: dimen17, color: black),
-                            ),
-                            SizedBox(height: 3),
-                            Text(
-                              Languages.of(context)!.consulation_schedule_text,
-                              style: regularTextStyle(
-                                fontSize: dimen13,
-                                color: lightGrey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children:
-                          provider.day_controllers.entries.map((entry) {
-                            String day = entry.key;
-                            List<TextEditingController> controllers =
-                                entry.value;
-                            return Column(
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Consumer<DashboardProvider>(
+                builder: (context, provider, child) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      SizedBox(height: 30),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                // Row to show the day name and add button
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        day,
-                                        style: regularTextStyle(
-                                            fontSize: dimen15, color: colBlack),
-                                      ),
-                                    ),
-                                    // Add Button
-                                  ],
+                                Text(
+                                  Languages.of(context)!.consultation_Schedule,
+                                  style: mediumTextStyle(
+                                      fontSize: dimen17, color: black),
                                 ),
-                                // Display the text fields
-                                ...controllers
-                                    .asMap()
-                                    .map((index, controller) {
-                                  return MapEntry(
-                                    index,
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 4.0),
-                                      child: Row(
-                                        children: [
-                                          // TextField for the time range (start and end time)
-                                          Expanded(
-                                            child: GestureDetector(
-                                              onTap: () async {
-                                                // Open time picker for the start time
-                                                TimeOfDay? startPickedTime =
-                                                await showTimePicker(
-                                                  context: context,
-                                                  initialTime:
-                                                  TimeOfDay.now(),
-                                                );
-                                                if (startPickedTime !=
-                                                    null) {
-                                                  // Convert to 24-hour format (HH:mm)
-                                                  String startTime =
-                                                  formatTo24Hour(
-                                                      startPickedTime);
-
-                                                  // Open time picker for the end time
-                                                  TimeOfDay? endPickedTime =
-                                                  await showTimePicker(
-                                                    context: context,
-                                                    initialTime: startPickedTime
-                                                        .replacing(
-                                                        hour: startPickedTime
-                                                            .hour +
-                                                            1),
-                                                  );
-                                                  if (endPickedTime !=
-                                                      null) {
-                                                    // Convert to 24-hour format (HH:mm)
-                                                    String endTime =
-                                                    formatTo24Hour(
-                                                        endPickedTime);
-
-                                                    // Update the controller with the time range
-                                                    controller.text =
-                                                    '$startTime - $endTime';
-                                                  }
-                                                }
-                                              },
-                                              child: AbsorbPointer(
-                                                child: TextField(
-                                                  controller: controller,
-                                                  decoration:
-                                                  InputDecoration(
-                                                    fillColor: white,
-                                                    filled: true,
-                                                    // Enable the background fill
-                                                    border:
-                                                    OutlineInputBorder(
-                                                      borderRadius:
-                                                      BorderRadius
-                                                          .circular(
-                                                          dimen8),
-                                                      borderSide:
-                                                      BorderSide(
-                                                        color:
-                                                        textf_borderColor, // Border color
-                                                      ),
-                                                    ),
-                                                    focusedBorder:
-                                                    OutlineInputBorder(
-                                                      borderRadius:
-                                                      BorderRadius
-                                                          .circular(
-                                                          dimen8),
-                                                      borderSide:
-                                                      BorderSide(
-                                                        color:
-                                                        textf_borderColor, // Border color when focused
-                                                      ),
-                                                    ),
-                                                    enabledBorder:
-                                                    OutlineInputBorder(
-                                                      borderRadius:
-                                                      BorderRadius
-                                                          .circular(
-                                                          dimen8),
-                                                      borderSide:
-                                                      BorderSide(
-                                                        color:
-                                                        textf_borderColor, // Border color when enabled
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          // Add button only for the last TextField
-                                          if (index ==
-                                              controllers.length - 1)
-                                            Padding(
-                                              padding:
-                                              const EdgeInsets.only(
-                                                  left: 10),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  color: appTheme,
-                                                  shape: BoxShape.rectangle,
-                                                  borderRadius:
-                                                  BorderRadius.circular(
-                                                      dimen8),
-                                                  border: Border.all(
-                                                    color: Colors.black,
-                                                    width: 1.0,
-                                                  ),
-                                                ),
-                                                child: IconButton(
-                                                  icon: Icon(
-                                                    Icons.add,
-                                                    color: Colors.black,
-                                                  ),
-                                                  onPressed: () =>
-                                                      provider
-                                                          .add_day_Field(day),
-                                                ),
-                                              ),
-                                            ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-
-// Helper function to format TimeOfDay to 24-hour format (HH:mm)
-                                  String _formatTo24Hour(TimeOfDay time) {
-                                    final hour = time.hour < 10
-                                        ? '0${time.hour}'
-                                        : time.hour.toString();
-                                    final minute = time.minute < 10
-                                        ? '0${time.minute}'
-                                        : time.minute.toString();
-                                    return '$hour:$minute';
-                                  }
-                                })
-                                    .values
-                                    .toList(),
+                                SizedBox(height: 3),
+                                Text(
+                                  Languages.of(context)!.consulation_schedule_text,
+                                  style: regularTextStyle(
+                                    fontSize: dimen13,
+                                    color: lightGrey,
+                                  ),
+                                ),
                               ],
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      GestureDetector(
-                        onTap: () {
-                          provider.UpdateSchedule(context);
-                        },
-                        child: Container(
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children:
+                              provider.day_controllers.entries.map((entry) {
+                                String day = entry.key;
+                                List<TextEditingController> controllers =
+                                    entry.value;
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Row to show the day name and add button
+                                    Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            day,
+                                            style: regularTextStyle(
+                                                fontSize: dimen15, color: colBlack),
+                                          ),
+                                        ),
+                                        // Add Button
+                                      ],
+                                    ),
+                                    // Display the text fields
+                                    ...controllers.asMap().map((index, controller) {
+                                      return MapEntry(
+                                        index,
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                                          child: Row(
+                                            children: [
+                                              // TextField for the time range (start and end time)
+                                              Expanded(
+                                                child: GestureDetector(
+                                                  onTap: () async {
+                                                    // Open time picker for the start time
+                                                    TimeOfDay? startPickedTime = await showTimePicker(
+                                                      context: context,
+                                                      initialTime: TimeOfDay.now(),
+                                                    );
+                                                    if (startPickedTime != null) {
+                                                      String startTime = formatTo24Hour(startPickedTime);
 
-                          width: double.infinity,
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          decoration: const BoxDecoration(
-                            color: secondaryTextColor,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
+                                                      // Open time picker for the end time
+                                                      TimeOfDay? endPickedTime = await showTimePicker(
+                                                        context: context,
+                                                        initialTime: startPickedTime.replacing(
+                                                          hour: startPickedTime.hour + 1,
+                                                        ),
+                                                      );
+                                                      if (endPickedTime != null) {
+                                                        String endTime = formatTo24Hour(endPickedTime);
+
+                                                        // Update the controller with the time range
+                                                        controller.text = '$startTime - $endTime';
+                                                      }
+                                                    }
+                                                  },
+                                                  child: AbsorbPointer(
+                                                    child: TextField(
+                                                      controller: controller,
+                                                      decoration: InputDecoration(
+                                                        fillColor: white,
+                                                        filled: true,
+                                                        border: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.circular(dimen8),
+                                                          borderSide: BorderSide(
+                                                            color: textf_borderColor, // Border color
+                                                          ),
+                                                        ),
+                                                        focusedBorder: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.circular(dimen8),
+                                                          borderSide: BorderSide(
+                                                            color: textf_borderColor, // Border color when focused
+                                                          ),
+                                                        ),
+                                                        enabledBorder: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.circular(dimen8),
+                                                          borderSide: BorderSide(
+                                                            color: textf_borderColor, // Border color when enabled
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+
+                                              // **Show Remove Button Only When TextField Has Data**
+                                              if (controller.text.isNotEmpty)
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 10),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.red,
+                                                      shape: BoxShape.rectangle,
+                                                      borderRadius: BorderRadius.circular(dimen8),
+                                                      border: Border.all(
+                                                        color: Colors.black,
+                                                        width: 1.0,
+                                                      ),
+                                                    ),
+                                                    child: IconButton(
+                                                      icon: Icon(
+                                                        Icons.remove,
+                                                        color: Colors.white,
+                                                      ),
+                                                      onPressed: () => provider.remove_day_Field(day, index),
+                                                    ),
+                                                  ),
+                                                ),
+
+                                              // Add button only for the last TextField
+                                              if (index == controllers.length - 1)
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 10),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      color: appTheme,
+                                                      shape: BoxShape.rectangle,
+                                                      borderRadius: BorderRadius.circular(dimen8),
+                                                      border: Border.all(
+                                                        color: Colors.black,
+                                                        width: 1.0,
+                                                      ),
+                                                    ),
+                                                    child: IconButton(
+                                                      icon: Icon(
+                                                        Icons.add,
+                                                        color: Colors.black,
+                                                      ),
+                                                      onPressed: () => provider.add_day_Field(day),
+                                                    ),
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    }).values.toList(),
+
+                                  ],
+                                );
+                              }).toList(),
                             ),
                           ),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              Languages.of(context)!.update_schedule,
-                              style: semiBoldTextStyle(
-                                fontSize: 16.0,
-                                color: colWhite,
-                              ),
-                            ),
-                          ),
-                        ),
+
+                        ],
                       ),
+                      const SizedBox(height: 50),
                     ],
+                  );
+                },
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                color: bg, // Match background color
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: secondaryTextColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                   ),
-                  const SizedBox(height: 30),
-                ],
-              );
-            },
-          ),
+                  onPressed: () {
+                    Provider.of<DashboardProvider>(context, listen: false).UpdateSchedule(context);
+                  },
+                  child: Text(
+                    Languages.of(context)!.update_schedule,
+                    style: semiBoldTextStyle(fontSize: 16.0, color: colWhite),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

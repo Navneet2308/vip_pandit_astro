@@ -3,12 +3,14 @@ import 'package:astrologeradmin/constance/my_colors.dart';
 import 'package:astrologeradmin/constance/textstyle.dart';
 import 'package:astrologeradmin/utils/ui_utils.dart';
 import 'package:astrologeradmin/views/register_success_screen.dart';
+import 'package:astrologeradmin/views/webView/Web_view.dart';
 import 'package:astrologeradmin/widget/global_button.dart';
 import 'package:astrologeradmin/widget/navigators.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../constance/commonString.dart';
 import '../constance/common_Widget.dart';
 import '../model/quiz_response.dart';
 import '../provider/auth_provider.dart';
@@ -79,7 +81,7 @@ class PreRegisterView extends StatelessWidget {
                     const SizedBox(height: 20),
                     buildDatePickerField(
                       context,
-                      "Suggest Time for interview",
+                      Languages.of(context)!.sugggest_time_interview,
                       "YYYY-MM-DD",
                       provider.updateDoi,
                       // Callback to update the selected date
@@ -115,8 +117,11 @@ class PreRegisterView extends StatelessWidget {
                                   fontSize: 13.0, color: secondaryTextColor),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  // Navigate to Terms & Conditions screen
-                                },
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => WebView(heading:Languages.of(context)!.termsAndConditions,url: termsConditions)),
+                                  );                                },
                             ),
                             TextSpan(
                                 text: "${Languages.of(context)!.and}",
@@ -128,8 +133,12 @@ class PreRegisterView extends StatelessWidget {
                                   fontSize: 13.0, color: secondaryTextColor),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  // Navigate to Privacy Policy screen
-                                },
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => WebView(heading: Languages.of(context)!.privacyPolicy,url: privacyPolicy)),
+                                  );
+                                  },
                             ),
                           ],
                         ),
