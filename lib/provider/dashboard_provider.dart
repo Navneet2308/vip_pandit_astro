@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:astrologeradmin/constance/assets_path.dart';
 import 'package:astrologeradmin/constance/my_colors.dart';
 import 'package:astrologeradmin/model/Followers.dart';
@@ -1292,7 +1291,11 @@ class DashboardProvider extends ChangeNotifier {
     try {
       final response = await apiService.getAuth(ApiPath.getProfile, {});
       final mResponse = AstroProfile.fromJson(response);
+
       if (mResponse.message != null) {
+        is_duty_on = mResponse.user!.duty_status == 1 ? true : false;
+        print("m_duty_status"+ is_duty_on.toString());
+
         PreferencesServices.setPreferencesData(
           PreferencesServices.astroId,
           mResponse.user?.astroId ?? '',
@@ -1416,7 +1419,7 @@ class DashboardProvider extends ChangeNotifier {
       if (response != null && response is Map<String, dynamic>) {
         // is_duty_on = response['Duty Status']=="True";
         dutyStatus = response['Duty Status'];
-        is_duty_on = response['duty_status'] == "1" ? true : false;
+        // is_duty_on = response['duty_status'] == "1" ? true : false;
       } else {
       }
     } catch (error) {

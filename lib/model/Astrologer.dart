@@ -8,6 +8,7 @@ class Astrologer {
   final String? astroLivingCity;
   final String? fullAddress;
   final int? pincode;
+  final int? duty_status;
   final String? gender;
   final int? acatId;
   final String? astroSkills;
@@ -34,6 +35,7 @@ class Astrologer {
     this.astroLivingCity,
     this.fullAddress,
     this.pincode,
+    this.duty_status,
     this.gender,
     this.acatId,
     this.astroSkills,
@@ -63,6 +65,7 @@ class Astrologer {
       astroLivingCity: json['astro_living_city'] as String?,
       fullAddress: json['full_address'] as String?,
       pincode: json['pincode'] as int?,
+      duty_status: json['duty_status'] as int?,
       gender: json['gender'] as String?,
       acatId: json['ac_id'] as int?,
       astroSkills: json['astro_skills'] as String?,
