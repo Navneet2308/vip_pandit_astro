@@ -25,45 +25,47 @@ Widget buildDatePickerField(
         ),
       ),
       const SizedBox(height: 8), // Spacing between label and field
-      GestureDetector(
-        onTap: () async {
-          DateTime today = DateTime.now();
-          DateTime? pickedDate = await showDatePicker(
-            context: context,
-            initialDate: label==(Languages.of(context)!.chatChargePerMin)
-                ? today
-                : DateTime(2010),
-            firstDate: label.toLowerCase().contains(Languages.of(context)!.sugggest_time_interview)
-                ? today
-                : DateTime(1900),
-            lastDate: label.toLowerCase().contains(Languages.of(context)!.sugggest_time_interview)
-                ? DateTime(2100)
-                : DateTime(2025),
-          );
+  GestureDetector(
+  onTap: () async {
+  DateTime today = DateTime.now();
+  DateTime firstDate = label == Languages.of(context)!.sugggest_time_interview
+  ? today.add(Duration(days: 1)) // Enforce selecting a date after today
+      : DateTime(1900);
+  DateTime lastDate = label == Languages.of(context)!.sugggest_time_interview
+  ? DateTime(2100)
+      : DateTime(2025);
 
-          if (pickedDate != null) {
-            String formattedDate =
-                "${pickedDate.year}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.day.toString().padLeft(2, '0')}";
-            onChanged(formattedDate);
-          }
-        },
-        child: Container(
-          width: double.infinity,
-          margin: const EdgeInsets.symmetric(horizontal: 15.0),
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey, width: 0.5),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text(
-            selectedDate.isEmpty ? hintText : selectedDate,
-            style: TextStyle(
-              color: selectedDate.isEmpty ? Colors.grey : Colors.black,
-              fontSize: 16,
-            ),
-          ),
-        ),
-      ),
+  DateTime initialDate = firstDate.isAfter(DateTime(2010)) ? firstDate : DateTime(2010);
+  DateTime? pickedDate = await showDatePicker(
+  context: context,
+  initialDate: initialDate,
+  firstDate: firstDate,
+  lastDate: lastDate,
+  );
+
+  if (pickedDate != null) {
+  String formattedDate =
+  "${pickedDate.year}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.day.toString().padLeft(2, '0')}";
+  onChanged(formattedDate);
+  }
+  },
+  child: Container(
+  width: double.infinity,
+  margin: const EdgeInsets.symmetric(horizontal: 15.0),
+  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+  decoration: BoxDecoration(
+  border: Border.all(color: Colors.grey, width: 0.5),
+  borderRadius: BorderRadius.circular(10),
+  ),
+  child: Text(
+  selectedDate.isEmpty ? hintText : selectedDate,
+  style: TextStyle(
+  color: selectedDate.isEmpty ? Colors.grey : Colors.black,
+  fontSize: 16,
+  ),
+  ),
+  ),
+  ),
     ],
   );
 }
