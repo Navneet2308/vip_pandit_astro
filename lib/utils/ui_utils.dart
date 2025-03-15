@@ -7,6 +7,7 @@ import 'package:astrologeradmin/views/astrologer_chat/Astrologer_Chat.dart';
 import 'package:astrologeradmin/views/webView/Web_view.dart';
 import 'package:astrologeradmin/widget/global_button.dart';
 import 'package:astrologeradmin/widget/navigators.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../constance/my_colors.dart';
@@ -56,23 +57,48 @@ class UiUtils {
                 height: 100,
                 width: 100,
                 decoration: BoxDecoration(
-                    color: inactive_dot_color,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(8),
-                        topLeft: Radius.circular(8))),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  color: inactive_dot_color,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
                   children: [
-                    Container(
-                      width: 96,
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(vertical: 3),
-                      decoration: BoxDecoration(color: yellow),
-                      child: Text(
-                        consultation.gender,
-                        style: mediumTextStyle(fontSize: 12.0, color: black),
+
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child:CachedNetworkImage(
+                        imageUrl: consultation.customer_image!,
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) =>
+                        const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            Icon(
+                              Icons.error_outline,
+                              color: lightText,
+                              size: 33,
+                            ),
                       ),
-                    )
+                    ),
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.symmetric(vertical: 3),
+                      decoration: BoxDecoration(
+                        color: yellow, // Slight opacity for better readability
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                      ),
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        consultation.gender,
+                        style: semiBoldTextStyle(fontSize: dimen12, color: black),
+                      ),
+                    ),
                   ],
                 ),
               ),

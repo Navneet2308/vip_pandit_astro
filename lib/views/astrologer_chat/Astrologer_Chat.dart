@@ -14,8 +14,9 @@ import '../../provider/chat_provider.dart';
 
 class AstrologerChat extends StatelessWidget {
   final ConsultationData? mconsultationData;
+  String? customer_image;
 
-  AstrologerChat({required this.mconsultationData});
+  AstrologerChat({required this.mconsultationData,required this.customer_image});
 
   @override
   void dispose() {}
@@ -108,7 +109,7 @@ class AstrologerChat extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: CachedNetworkImage(
-                            imageUrl: "dkdkkdkdkkdkdkkdkd",
+                            imageUrl: customer_image!,
                             width: 33,
                             height: 33,
                             fit: BoxFit.cover,

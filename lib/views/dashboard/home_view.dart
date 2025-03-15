@@ -241,6 +241,8 @@ class _HomePageState extends State<HomePage> {
                                         Languages.of(context)!.rejoin,
                                         (status_type) {
                                       provider.updateConsultation(
+                                          provider
+                                              .consultationList[index].customer_image,
                                           context,
                                           status_type,
                                           provider.activeconsultationList[index]
@@ -323,6 +325,8 @@ class _HomePageState extends State<HomePage> {
                                         Languages.of(context)!.accept,
                                         (status_type) {
                                       provider.updateConsultation(
+                                          provider
+                                              .consultationList[index].customer_image,
                                           context,
                                           status_type,
                                           provider
@@ -334,7 +338,7 @@ class _HomePageState extends State<HomePage> {
                                     }),
                                     provider.consultationList[index]
                                                 .partnerName !=
-                                            null
+                                            ""
                                         ? Padding(
                                             padding: const EdgeInsets.symmetric(
                                               horizontal: 15.0,

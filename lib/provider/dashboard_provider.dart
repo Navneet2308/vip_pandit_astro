@@ -1445,7 +1445,7 @@ class DashboardProvider extends ChangeNotifier {
   }
 
 
-  updateConsultation(BuildContext context, String mstatus, int con_id,
+  updateConsultation(String customer_image,BuildContext context, String mstatus, int con_id,
       int consultation_type, String duration, int charge_amount) async {
     try {
       final response = await apiService.post_auth(ApiPath.updateConsultation, {
@@ -1465,7 +1465,7 @@ class DashboardProvider extends ChangeNotifier {
           } else {
             // print("neeeeeeee"+mResponse.data!.fullName!);
             CustomNavigators.pushNavigate(
-                AstrologerChat(mconsultationData: mResponse.data!), context);
+                AstrologerChat(mconsultationData: mResponse.data!,customer_image: customer_image,), context);
           }
         } else if (mstatus == "4") {
           DatabaseReference databaseReference = FirebaseDatabase.instance
@@ -1533,9 +1533,11 @@ class DashboardProvider extends ChangeNotifier {
           .post_auth(ApiPath.getConsultation, {"statusType": "1"});
       final mResponse = ConsultationResponse.fromJson(response);
       if (mResponse.error != null) {
+        print("dddddddd");
         _consultationList = mResponse.data!;
       } else {}
     } catch (error) {
+      print("hello"+error.toString());
     } finally {
       notifyListeners();
     }
