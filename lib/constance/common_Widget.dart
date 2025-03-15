@@ -267,7 +267,7 @@ Widget buildTextField(
     maxLength = 10; // Adjust as needed
   }
   else if ( label==(Languages.of(context)!.bank_ifsc_code)) {
-    keyboardType = TextInputType.number;
+    keyboardType = TextInputType.text;
     maxLength = 11;
   }
   else if ( label==(Languages.of(context)!.pincode)) {
