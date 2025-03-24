@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-
 String formatTo24Hour(TimeOfDay time) {
   final hour = time.hour < 10 ? '0${time.hour}' : time.hour.toString();
   final minute = time.minute < 10 ? '0${time.minute}' : time.minute.toString();
   return '$hour:$minute';
 }
+
 String convertTimeFormat(String time) {
   List<String> parts = time.split(":");
 
@@ -24,7 +24,7 @@ String convertTimeFormat(String time) {
     }
   }
 
-  return "Invalid format";
+  return "00:00";
 }
 
 bool isValidEmail(String email) {
@@ -62,6 +62,7 @@ void showErrorSnackBar(BuildContext context, String message) {
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
+
 void showSuccessSnackBar(BuildContext context, String message) {
   final snackBar = SnackBar(
     content: Text(

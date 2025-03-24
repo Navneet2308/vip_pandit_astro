@@ -13,9 +13,8 @@ class UpdateConsultationModel {
     return UpdateConsultationModel(
       error: json['error'] as String?,
       message: json['message'] as String?,
-      data: json['data'] != null
-          ? ConsultationData.fromJson(json['data'])
-          : null,
+      data:
+          json['data'] != null ? ConsultationData.fromJson(json['data']) : null,
     );
   }
 

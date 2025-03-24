@@ -12,11 +12,27 @@ import '../../constance/textstyle.dart';
 import '../../model/update_consultationModel.dart';
 import '../../provider/chat_provider.dart';
 
-class AstrologerChat extends StatelessWidget {
+class AstrologerChat extends StatefulWidget {
   final ConsultationData? mconsultationData;
   String? customer_image;
 
-  AstrologerChat({required this.mconsultationData,required this.customer_image});
+  AstrologerChat(
+      {required this.mconsultationData, required this.customer_image});
+
+  @override
+  State<AstrologerChat> createState() => _AstrologerChatState();
+}
+
+class _AstrologerChatState extends State<AstrologerChat> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final chatProvider =
+          Provider.of<AstrologerChatProvider>(context, listen: false);
+      chatProvider.initchat(widget.mconsultationData!, context);
+    });
+    super.initState();
+  }
 
   @override
   void dispose() {}
@@ -67,12 +83,9 @@ class AstrologerChat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final chatProvider = Provider.of<AstrologerChatProvider>(context, listen: false);
-      chatProvider.initchat(mconsultationData!,context);
-    });
-    return Consumer<AstrologerChatProvider>(builder: (context, chatProvider, child)
-    {
+    return Consumer<AstrologerChatProvider>(
+        builder: (context, chatProvider, child) {
+      print("customer_image" + widget.customer_image!);
       return WillPopScope(
         onWillPop: () async {
           return showAlertDialog(chatProvider, context);
@@ -98,8 +111,8 @@ class AstrologerChat extends StatelessWidget {
           body: Column(
             children: <Widget>[
               Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 20, vertical: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 color: colPrimary,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,20 +122,18 @@ class AstrologerChat extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: CachedNetworkImage(
-                            imageUrl: customer_image!,
+                            imageUrl: widget.customer_image!,
                             width: 33,
                             height: 33,
                             fit: BoxFit.cover,
-                            placeholder: (context, url) =>
-                            const Center(
+                            placeholder: (context, url) => const Center(
                               child: CircularProgressIndicator(),
                             ),
-                            errorWidget: (context, url, error) =>
-                                Icon(
-                                  Icons.error_outline,
-                                  color: lightText,
-                                  size: 33,
-                                ),
+                            errorWidget: (context, url, error) => Icon(
+                              Icons.error_outline,
+                              color: lightText,
+                              size: 33,
+                            ),
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -193,9 +204,7 @@ class AstrologerChat extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                "${chatProvider.consultationData
-                                    .fullName} - ${chatProvider.consultationData
-                                    .gender}",
+                                "${chatProvider.consultationData.fullName} - ${chatProvider.consultationData.gender}",
                                 style: boldTextStyle(
                                   fontSize: dimen16,
                                   color: colBlackText,
@@ -203,19 +212,14 @@ class AstrologerChat extends StatelessWidget {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                "${Languages.of(context)!
-                                    .dob_short} ${chatProvider.consultationData
-                                    .dateOfBirth} ${chatProvider
-                                    .consultationData.timeOfBirth ?? ''}",
+                                "${Languages.of(context)!.dob_short} ${chatProvider.consultationData.dateOfBirth} ${chatProvider.consultationData.timeOfBirth ?? ''}",
                                 style: regularTextStyle(
                                   fontSize: dimen16,
                                   color: lightText,
                                 ),
                               ),
                               Text(
-                                "${chatProvider.consultationData
-                                    .placeOfBirth} - ${chatProvider
-                                    .consultationData.pincode}",
+                                "${chatProvider.consultationData.placeOfBirth} - ${chatProvider.consultationData.pincode}",
                                 style: regularTextStyle(
                                   fontSize: dimen16,
                                   color: lightText,
@@ -234,27 +238,23 @@ class AstrologerChat extends StatelessWidget {
                                   children: [
                                     const SizedBox(height: 8),
                                     Text(
-                                      chatProvider.consultationData
-                                          .partnerName!,
+                                      chatProvider
+                                          .consultationData.partnerName!,
                                       style: boldTextStyle(
                                         fontSize: dimen16,
                                         color: lightText,
                                       ),
                                     ),
                                     Text(
-                                      "${Languages.of(context)!
-                                          .dob_short} ${chatProvider
-                                          .consultationData
-                                          .partnerDob} ${chatProvider
-                                          .consultationData.partnerTob}",
+                                      "${Languages.of(context)!.dob_short} ${chatProvider.consultationData.partnerDob} ${chatProvider.consultationData.partnerTob}",
                                       style: regularTextStyle(
                                         fontSize: dimen14,
                                         color: lightText,
                                       ),
                                     ),
                                     Text(
-                                      chatProvider.consultationData
-                                          .partnerPob ??
+                                      chatProvider
+                                              .consultationData.partnerPob ??
                                           '',
                                       style: regularTextStyle(
                                         fontSize: dimen14,
@@ -270,30 +270,30 @@ class AstrologerChat extends StatelessWidget {
                       chatProvider.messages.isEmpty
                           ? SizedBox.shrink()
                           : Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: chatProvider.messages.length,
-                          itemBuilder: (context, index) {
-                            final message = chatProvider.messages[index];
-                            return buildItem(
-                              chatProvider,
-                              index,
-                              message.message,
-                              message.user_id,
-                            );
-                          },
-                        ),
-                      ),
+                              padding: EdgeInsets.all(8.0),
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: chatProvider.messages.length,
+                                itemBuilder: (context, index) {
+                                  final message = chatProvider.messages[index];
+                                  return buildItem(
+                                    chatProvider,
+                                    index,
+                                    message.message,
+                                    message.user_id,
+                                  );
+                                },
+                              ),
+                            ),
                     ],
                   ),
                 ),
               ),
               Container(
                 color: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                    vertical: 10, horizontal: 10),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Row(
                   children: <Widget>[
                     Expanded(
@@ -355,7 +355,8 @@ class AstrologerChat extends StatelessWidget {
   Widget buildItem(AstrologerChatProvider provider, int index,
       String message_data, String msg_sender_id) {
     if (message_data != null) {
-      if (msg_sender_id == "astro_"+provider.consultationData.astroId.toString()) {
+      if (msg_sender_id ==
+          "astro_" + provider.consultationData.astroId.toString()) {
         return Column(
           children: [
             SizedBox(
@@ -367,8 +368,8 @@ class AstrologerChat extends StatelessWidget {
                     child: Container(
                   margin: EdgeInsets.only(top: 10),
                   alignment: Alignment.topRight,
-                  child:
-                      messageUi(secondaryTextColor, Colors.white, message_data, "right"),
+                  child: messageUi(
+                      secondaryTextColor, Colors.white, message_data, "right"),
                 )),
               ],
               mainAxisAlignment: MainAxisAlignment.end,
@@ -464,6 +465,4 @@ class AstrologerChat extends StatelessWidget {
       },
     );
   }
-
-
 }

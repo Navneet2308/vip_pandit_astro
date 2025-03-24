@@ -14,6 +14,11 @@ class LanguageHi extends Languages {
   String get kyc_pending => "केवाईसी लंबित";
 
   @override
+  String get not_applied => "लागू नहीं किया गया";
+
+
+
+  @override
   String get kyc_approved => "केवाईसी स्वीकृत";
 
   @override

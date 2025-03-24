@@ -13,6 +13,7 @@ abstract class Languages {
   String get aiAstrology;
   String get kyc_pending;
   String get kyc_approved;
+  String get not_applied;
   String get aiAstrologyS;
   String get findCompleteSolutionToYourProblems;
   String get exploreNowToExperience;

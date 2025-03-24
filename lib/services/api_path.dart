@@ -1,5 +1,5 @@
-class ApiPath{
-  static const String baseUrl = 'https://aiastrology.serverx.in/api/astrologer/';
+class ApiPath {
+  static const String baseUrl = 'https://vippandit.com/api/astrologer/';
   static const String getLanguages = 'getLanguages';
   static const String getHelpDesk = 'getHelpDesk';
 
@@ -20,21 +20,17 @@ class ApiPath{
 
   static const String withdrawlRequest = "withdrawlRequest";
 
-
-
   static const String saveBankDetails = "saveBankDetails";
   static const String saveConsultationSchedule = "saveConsultationSchedule";
 
   static const String getConsultationSchedule = "getConsultationSchedule";
 
   static const String getEarningHistory = "getEarningHistory";
+  static const String getwithdrawlHistory = "getwithdrawlHistory";
 
   static const String getMyFollowers = "getMyFollowers";
 
   static const String ChangeDutyStatus = "ChangeDutyStatus";
 
   static const String updateConsultation = "updateConsultation";
-
-
-
 }

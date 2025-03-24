@@ -118,8 +118,6 @@ class AstrologerChatProvider extends ChangeNotifier {
     try {
       final response = await apiService.post_auth(ApiPath.updateConsultation, {
         "status": 2,
-        // "charge_amount":0,
-        // "duration":"00:00",
         "con_id": consultationData.conId!,
         "consultation_type": consultationData.consultationType.toString()
       });

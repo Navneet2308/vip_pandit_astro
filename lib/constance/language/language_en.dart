@@ -184,6 +184,10 @@ class LanguageEn extends Languages{
   String get kyc_pending => "KYC Pending";
 
   @override
+  String get not_applied => "Not Applied";
+
+
+  @override
   String get kyc_approved => "KYC Approved";
 
 

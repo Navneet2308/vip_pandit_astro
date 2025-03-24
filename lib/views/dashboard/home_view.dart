@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
     _timer?.cancel();
     super.dispose();
   }
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -43,12 +44,12 @@ class _HomePageState extends State<HomePage> {
       _timer = Timer.periodic(Duration(seconds: 5), (timer) {
         provider.getDeatils(context);
       });
-    });    super.initState();
+    });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Consumer<DashboardProvider>(builder: (context, provider, child) {
       return Scaffold(
         backgroundColor: bg,
@@ -177,7 +178,7 @@ class _HomePageState extends State<HomePage> {
               ),
               provider.activeconsultationList.length > 0
                   ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(
@@ -195,7 +196,8 @@ class _HomePageState extends State<HomePage> {
                             physics: NeverScrollableScrollPhysics(),
                             itemBuilder: (context, int index) {
                               return Container(
-                                margin: EdgeInsets.only(left: 15,right: 15,bottom: 15),
+                                margin: EdgeInsets.only(
+                                    left: 15, right: 15, bottom: 15),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(12.0),
@@ -241,8 +243,8 @@ class _HomePageState extends State<HomePage> {
                                         Languages.of(context)!.rejoin,
                                         (status_type) {
                                       provider.updateConsultation(
-                                          provider
-                                              .consultationList[index].customer_image,
+                                          provider.consultationList[index]
+                                              .customer_image,
                                           context,
                                           status_type,
                                           provider.activeconsultationList[index]
@@ -264,7 +266,7 @@ class _HomePageState extends State<HomePage> {
                   : Container(),
               provider.consultationList.length > 0
                   ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: dimen15),
@@ -284,7 +286,8 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.zero,
                             itemBuilder: (context, int index) {
                               return Container(
-                                margin: EdgeInsets.only(left: 15,right: 15,bottom: 15),
+                                margin: EdgeInsets.only(
+                                    left: 15, right: 15, bottom: 15),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(12.0),
@@ -325,8 +328,8 @@ class _HomePageState extends State<HomePage> {
                                         Languages.of(context)!.accept,
                                         (status_type) {
                                       provider.updateConsultation(
-                                          provider
-                                              .consultationList[index].customer_image,
+                                          provider.consultationList[index]
+                                              .customer_image,
                                           context,
                                           status_type,
                                           provider

@@ -34,6 +34,7 @@ import '../model/helpDesk.dart';
 import '../model/messageModel.dart';
 import '../model/quiz_response.dart';
 import '../model/update_consultationModel.dart';
+import '../model/withDrwalHistory.dart';
 import '../services/ApiService.dart';
 import '../services/api_path.dart';
 import '../services/user_prefences.dart';
@@ -54,6 +55,8 @@ class DashboardProvider extends ChangeNotifier {
   int astro_id = 0;
   bool is_Consultation_Schedule = true;
   bool is_duty_on = false;
+
+  int wallet_tab_index = 0;
 
   String? _responseMessage;
 
@@ -122,6 +125,10 @@ class DashboardProvider extends ChangeNotifier {
   List<EarningData> _earningList = [];
 
   List<EarningData> get earningList => _earningList;
+
+  List<WithdrawlData> _withdrawalList = [];
+
+  List<WithdrawlData> get withdrawalList => _withdrawalList;
 
   List<Consultation> get consultationList => _consultationList;
 
@@ -210,7 +217,6 @@ class DashboardProvider extends ChangeNotifier {
     try {
       final response = await apiService.getAuth(ApiPath.getHelpDesk, {});
       helpdesk_data = Helpdesk.fromJson(response);
-
     } catch (error) {
     } finally {
       notifyListeners();
@@ -258,12 +264,20 @@ class DashboardProvider extends ChangeNotifier {
     if (day_controllers.containsKey(day) && day_controllers[day]!.length > 1) {
       day_controllers[day]!.removeAt(index);
       notifyListeners();
+    } else {
+      day_controllers[day]![0].clear();
+      notifyListeners();
     }
-    else
-      {
-        day_controllers[day]![0].clear();
-        notifyListeners();
-      }
+  }
+
+  void changeWallettab(int selected_w_item, BuildContext context) {
+    if (selected_w_item == 0) {
+      getEarningHistory(context);
+    } else {
+      getwithdrawlHistory(context);
+    }
+    wallet_tab_index = selected_w_item;
+    notifyListeners();
   }
 
   Future<void> changeDutyStatus(BuildContext context, int duty_status) async {
@@ -467,7 +481,6 @@ class DashboardProvider extends ChangeNotifier {
     }
   }
 
-
   String? bankForm() {
     // Check if all text fields are filled
     if (bank_accountno.isEmpty) return "Bank account number is required.";
@@ -654,6 +667,7 @@ class DashboardProvider extends ChangeNotifier {
     List<AstrologyCategoryModel> items,
     DashboardProvider provider,
   ) {
+    print("selectedValues" + selectedValues.length.toString());
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
@@ -733,8 +747,9 @@ class DashboardProvider extends ChangeNotifier {
                       itemCount: items.length,
                       itemBuilder: (context, index) {
                         final category = items[index];
-                        final isSelected =
-                            provider.selectedastoCat.contains(category);
+                        final isSelected = provider.selectedastoCat.any(
+                            (item) =>
+                                item.categoryName == category.categoryName);
                         return InkWell(
                           onTap: () {
                             provider.toggleCategory(category);
@@ -849,6 +864,9 @@ class DashboardProvider extends ChangeNotifier {
     final provider =
         Provider.of<BottomSheetSelectionProvider>(context, listen: false);
 
+    if (provider.selectedLanguages.length < 1) {
+      provider.selectedLanguages.addAll(selected_langauge);
+    }
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -877,7 +895,8 @@ class DashboardProvider extends ChangeNotifier {
                       itemBuilder: (context, index) {
                         final language = items[index];
                         final isSelected = languageProvider.selectedLanguages
-                            .contains(language);
+                            .any((item) =>
+                                item.languageName == language.languageName);
                         return InkWell(
                           onTap: () {
                             languageProvider.toggleLanguage(language);
@@ -971,8 +990,8 @@ class DashboardProvider extends ChangeNotifier {
                       itemCount: items.length,
                       itemBuilder: (context, index) {
                         final skill = items[index];
-                        final isSelected =
-                            provider.selectedastoSkill.contains(skill);
+                        final isSelected = provider.selectedastoSkill
+                            .any((item) => item.skill_name == skill.skill_name);
                         return InkWell(
                           onTap: () {
                             provider.toggleSkill(skill);
@@ -1198,10 +1217,10 @@ class DashboardProvider extends ChangeNotifier {
         .where((skill) => intList_skill.contains(skill.skill_id))
         .toList();
 
-    int astro_cat = await PreferencesServices.getPreferencesData(
+    String astro_cat = await PreferencesServices.getPreferencesData(
         PreferencesServices.acatId);
+    print("astro_cat" + astro_cat.toString());
     List<int> intList_car = astro_cat
-        .toString()
         .replaceAll(RegExp(r'[\[\]\s]'), '') // Remove brackets and spaces
         .split(',') // Split by commas
         .map(int.parse) // Convert each string to an integer
@@ -1243,6 +1262,21 @@ class DashboardProvider extends ChangeNotifier {
         Fluttertoast.showToast(msg: mResponse.error.toString());
       }
     } catch (error) {
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  getwithdrawlHistory(BuildContext context) async {
+    try {
+      final response =
+          await apiService.getAuth(ApiPath.getwithdrawlHistory, {});
+      final mResponse = WithdrawlHistory.fromJson(response);
+      if (mResponse.message != null) {
+        _withdrawalList = mResponse.data;
+      } else {}
+    } catch (error) {
+      showSuccessSnackBar(context, "mResponse.message!" + error.toString());
     } finally {
       notifyListeners();
     }
@@ -1294,7 +1328,7 @@ class DashboardProvider extends ChangeNotifier {
 
       if (mResponse.message != null) {
         is_duty_on = mResponse.user!.duty_status == 1 ? true : false;
-        print("m_duty_status"+ is_duty_on.toString());
+        print("m_duty_status" + is_duty_on.toString());
 
         PreferencesServices.setPreferencesData(
           PreferencesServices.astroId,
@@ -1420,10 +1454,8 @@ class DashboardProvider extends ChangeNotifier {
         // is_duty_on = response['Duty Status']=="True";
         dutyStatus = response['Duty Status'];
         // is_duty_on = response['duty_status'] == "1" ? true : false;
-      } else {
-      }
+      } else {}
     } catch (error) {
-
     } finally {
       notifyListeners();
     }
@@ -1444,9 +1476,14 @@ class DashboardProvider extends ChangeNotifier {
     }
   }
 
-
-  updateConsultation(String customer_image,BuildContext context, String mstatus, int con_id,
-      int consultation_type, String duration, int charge_amount) async {
+  updateConsultation(
+      String customer_image,
+      BuildContext context,
+      String mstatus,
+      int con_id,
+      int consultation_type,
+      String duration,
+      int charge_amount) async {
     try {
       final response = await apiService.post_auth(ApiPath.updateConsultation, {
         "status": mstatus,
@@ -1465,14 +1502,18 @@ class DashboardProvider extends ChangeNotifier {
           } else {
             // print("neeeeeeee"+mResponse.data!.fullName!);
             CustomNavigators.pushNavigate(
-                AstrologerChat(mconsultationData: mResponse.data!,customer_image: customer_image,), context);
+                AstrologerChat(
+                  mconsultationData: mResponse.data!,
+                  customer_image: customer_image,
+                ),
+                context);
           }
         } else if (mstatus == "4") {
           DatabaseReference databaseReference = FirebaseDatabase.instance
               .ref()
-              .child(consultation_type == 2?"room_call":"astro_chat")
+              .child(consultation_type == 2 ? "room_call" : "astro_chat")
               .child(con_id.toString());
-          if(consultation_type!=2) {
+          if (consultation_type != 2) {
             try {
               MessageModel messageModel = MessageModel(
                 message: "",
@@ -1537,7 +1578,7 @@ class DashboardProvider extends ChangeNotifier {
         _consultationList = mResponse.data!;
       } else {}
     } catch (error) {
-      print("hello"+error.toString());
+      print("hello" + error.toString());
     } finally {
       notifyListeners();
     }

@@ -8,8 +8,8 @@ class EarningHistory {
     return EarningHistory(
       message: json['message'] ?? '',
       data: (json['data'] as List?)
-          ?.map((e) => EarningData.fromJson(e))
-          .toList() ??
+              ?.map((e) => EarningData.fromJson(e))
+              .toList() ??
           [],
     );
   }
@@ -27,6 +27,8 @@ class EarningData {
   final int totalAmount;
   final int count;
   final String customerName;
+  final String duration;
+  final int costPerMin;
   final ConsultationDetail consultationDetails;
 
   EarningData({
@@ -34,6 +36,8 @@ class EarningData {
     this.totalAmount = 0,
     this.count = 0,
     this.customerName = 'Unknown',
+    this.costPerMin = 0,
+    this.duration = "00:00",
     ConsultationDetail? consultationDetails,
   }) : consultationDetails = consultationDetails ?? ConsultationDetail();
 
@@ -43,6 +47,8 @@ class EarningData {
       totalAmount: json['total_amount'] ?? 0,
       count: json['count'] ?? 0,
       customerName: json['customer_name'] ?? 'Unknown',
+      costPerMin: json['costPerMin'] ?? 0,
+      duration: json['duration'] ?? '00:00',
       consultationDetails: json['consultation_details'] != null
           ? ConsultationDetail.fromJson(json['consultation_details'])
           : ConsultationDetail(),
@@ -55,6 +61,8 @@ class EarningData {
       'total_amount': totalAmount,
       'count': count,
       'customer_name': customerName,
+      'costPerMin': costPerMin,
+      'duration': duration,
       'consultation_details': consultationDetails.toJson(),
     };
   }

@@ -8,22 +8,63 @@ import '../../constance/contants.dart';
 import 'controllers/video_provider.dart';
 
 
-class VideoCall extends StatelessWidget {
+class VideoCall extends StatefulWidget {
 
+  @override
+  State<VideoCall> createState() => _VideoCallState();
+}
 
-  const VideoCall();
+class _VideoCallState extends State<VideoCall> {
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final provider = Provider.of<VideoProvider>(context, listen: false);
+      provider.removeRoomListener(context);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      VideoProvider videoProvider = Provider.of<VideoProvider>(context);
-      videoProvider.removeRoomListener(context);
-    });
+
     return Consumer<VideoProvider>(builder: (context, videoProvider, child)
     {
+
       return WillPopScope(
         onWillPop: () async {
-          videoProvider.showExitDialog(context);
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext mcontext) {
+              return AlertDialog(
+                title: Text(Languages.of(context)!.end_consultation,
+                    style: TextStyle(color: Colors.black)),
+                content: Text(
+                    Languages.of(context)!
+                        .end_consultation_description,
+                    style: TextStyle(color: Colors.black)),
+                actions: [
+                  ElevatedButton(
+                    child: Text(Languages.of(context)!.cancel,
+                        style: TextStyle(color: Colors.black)),
+                    onPressed: () =>
+                        Navigator.of(mcontext).pop(false),
+                  ),
+                  ElevatedButton(
+                    child: Text(
+                        Languages.of(context)!.yes,
+                        style: TextStyle(color: Colors.black)),
+                    onPressed: () {
+                      videoProvider.isYouLeft = true;
+                      Navigator.of(mcontext).pop(false);
+                      videoProvider.end(context);
+                    },
+                  ),
+                ],
+              );
+            },
+          );
           return false;
         },
         child: Scaffold(
@@ -38,8 +79,14 @@ class VideoCall extends StatelessWidget {
                     videoProvider.consultationData.conId.toString(),
                 events: ZegoUIKitPrebuiltCallEvents(
                   // Modify your custom configurations here.
-                  onHangUpConfirmation: (ZegoCallHangUpConfirmationEvent event,
+                  onCallEnd: (egoCallEndEvent, void Function()) async {
+                    if(egoCallEndEvent.kickerUserID != "astro_id"+videoProvider.consultationData.astroId.toString())
+                      {
+                      await videoProvider.callEndAPI(context);
+                      }
+                  },
 
+                  onHangUpConfirmation: (ZegoCallHangUpConfirmationEvent event,
                       /// defaultAction to return to the previous page
                       Future<bool> Function() defaultAction,) async {
                     return await showDialog(
@@ -65,6 +112,7 @@ class VideoCall extends StatelessWidget {
                                   Languages.of(context)!.yes,
                                   style: TextStyle(color: Colors.black)),
                               onPressed: () {
+                                videoProvider.isYouLeft = true;
                                 Navigator.of(mcontext).pop(false);
                                 videoProvider.end(context);
                               },

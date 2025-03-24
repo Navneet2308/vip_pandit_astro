@@ -194,6 +194,10 @@ class EditBank extends StatelessWidget {
     String statusText;
 
     switch (provider.bank_Ac_approved) {
+      case 0:
+        backgroundColor = lightGrey;
+        statusText = Languages.of(context)!.not_applied;
+        break;
       case 1:
         backgroundColor = Colors.green;
         statusText = Languages.of(context)!.kyc_approved;

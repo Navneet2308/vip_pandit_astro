@@ -10,7 +10,7 @@ class Astrologer {
   final int? pincode;
   final int? duty_status;
   final String? gender;
-  final int? acatId;
+  final String? acatId;
   final String? astroSkills;
   final String? astroLanguage;
   final String? astroExperience;
@@ -67,7 +67,7 @@ class Astrologer {
       pincode: json['pincode'] as int?,
       duty_status: json['duty_status'] as int?,
       gender: json['gender'] as String?,
-      acatId: json['ac_id'] as int?,
+      acatId: json['acat_id'] as String?,
       astroSkills: json['astro_skills'] as String?,
       astroLanguage: json['astro_language'] as String?,
       astroExperience: json['astro_experience'] as String?,

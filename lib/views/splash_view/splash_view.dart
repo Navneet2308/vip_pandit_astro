@@ -33,14 +33,14 @@ class SplashView extends StatelessWidget {
                   height: 115,
                   width: 115,
                 )),
-            Container(
-                padding: EdgeInsets.only(top: 15),
-                alignment: Alignment.center,
-                child: Image.asset(
-                  AssetsPath.aiAstrology,
-                  height: 62,
-                  width: 123,
-                ))
+            // Container(
+            //     padding: EdgeInsets.only(top: 15),
+            //     alignment: Alignment.center,
+            //     child: Image.asset(
+            //       AssetsPath.aiAstrology,
+            //       height: 62,
+            //       width: 123,
+            //     ))
           ],
         ),
       ),
