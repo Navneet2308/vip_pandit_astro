@@ -16,7 +16,8 @@ class LanguageHi extends Languages {
   @override
   String get not_applied => "लागू नहीं किया गया";
 
-
+  @override
+  String get chat => "संवाद";
 
   @override
   String get kyc_approved => "केवाईसी स्वीकृत";
@@ -168,12 +169,11 @@ class LanguageHi extends Languages {
   String get beforeStartUsingThisPlatform =>
       "इस प्लेटफ़ॉर्म का उपयोग शुरू करने से पहले, हमारे विशेषज्ञ ज्योतिषी आपके ज्ञान और अनुभव की समीक्षा करेंगे क्योंकि यह हमारे ग्राहकों के भविष्य को प्रभावित करेगा।";
 
-
   @override
   String get activeConsultation => "सक्रिय परामर्श";
 
   @override
-  String get audioVideoCall => "ऑडियो/वीडियो कॉल";
+  String get audioVideoCall => "वीडियो कॉल";
 
   @override
   String get consultationRequests => "परामर्श अनुरोध";
@@ -254,8 +254,7 @@ class LanguageHi extends Languages {
   String get consultation_history => "परामर्श इतिहास";
 
   @override
-  String get detail_consultation_transaction =>
-      "परामर्श लेनदेन का विवरण";
+  String get detail_consultation_transaction => "परामर्श लेनदेन का विवरण";
 
   @override
   String get bank_details_kyc => "बैंक विवरण केवाईसी";
@@ -459,13 +458,13 @@ class LanguageHi extends Languages {
   @override
   String get dob_short => "जन्मतिथि";
 
+  @override
+  String get exploreNowToExperience =>
+      "अपने ज्योतिष कौशल और विशेषज्ञता से लोगों की मदद करें";
 
   @override
-  String get exploreNowToExperience => "अपने ज्योतिष कौशल और विशेषज्ञता से लोगों की मदद करें";
-
-  @override
-  String get onbord_des => "वीआईपी पंडित के साथ खुद को पंजीकृत करें और अपने ज्योतिष कौशल से लोगों की मदद करना शुरू करें";
-
+  String get onbord_des =>
+      "वीआईपी पंडित के साथ खुद को पंजीकृत करें और अपने ज्योतिष कौशल से लोगों की मदद करना शुरू करें";
 
   @override
   String get no => "नहीं";
@@ -476,15 +475,12 @@ class LanguageHi extends Languages {
   @override
   String get cancel => "रद्द करें";
 
-
-
   @override
   String get exitAppTitle => "क्या आप ऐप से बाहर निकलना चाहते हैं?";
 
-
   @override
-  String get exitAppMessage => "क्या आप सुनिश्चित हैं कि आप बाहर जाना चाहते हैं?";
-
+  String get exitAppMessage =>
+      "क्या आप सुनिश्चित हैं कि आप बाहर जाना चाहते हैं?";
 
   @override
   String get english => "हिन्दी (भारत)";
@@ -517,8 +513,6 @@ class LanguageHi extends Languages {
 
   @override
   // TODO: implement cancel
-  String get enterAmountTowithdraw => "निकासी के लिए अनुरोध भेजने के लिए राशि दर्ज करें";
-
-
-
+  String get enterAmountTowithdraw =>
+      "निकासी के लिए अनुरोध भेजने के लिए राशि दर्ज करें";
 }

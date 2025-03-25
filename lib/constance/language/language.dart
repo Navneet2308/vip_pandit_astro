@@ -85,6 +85,8 @@ abstract class Languages {
   String get howManyTotalRashisInVedicAstrology;
   String get beforeStartUsingThisPlatform;
   String get audioVideoCall;
+  String get chat;
+
   String get activeConsultation;
   String get consultationRequests;
   String get welcome;

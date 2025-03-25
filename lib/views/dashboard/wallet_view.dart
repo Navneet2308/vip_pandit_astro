@@ -290,22 +290,43 @@ class WalletView extends StatelessWidget {
                   "${convertTimeFormat(earning_data.duration.toString())} - ${earning_data.costPerMin}/Min",
                   style: mediumTextStyle(fontSize: dimen13, color: lightGrey),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: blue,
-                    // Background color
-                    borderRadius: BorderRadius.circular(2), // Rounded corners
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
-                  // Padding for the text
-                  child: Text(
-                    "Chat",
-                    style: TextStyle(
-                      color: Colors.white, // Text color
-                      fontSize: dimen10, // Text size
-                    ),
-                  ),
-                ),
+                earning_data.consultation_type == 1
+                    ? Container(
+                        decoration: BoxDecoration(
+                          color: blue,
+                          // Background color
+                          borderRadius:
+                              BorderRadius.circular(2), // Rounded corners
+                        ),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+                        // Padding for the text
+                        child: Text(
+                          Languages.of(context)!.chat,
+                          style: TextStyle(
+                            color: Colors.white, // Text color
+                            fontSize: dimen10, // Text size
+                          ),
+                        ),
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                          color: colGreen,
+                          // Background color
+                          borderRadius:
+                              BorderRadius.circular(2), // Rounded corners
+                        ),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+                        // Padding for the text
+                        child: Text(
+                          Languages.of(context)!.audioVideoCall,
+                          style: TextStyle(
+                            color: Colors.white, // Text color
+                            fontSize: dimen10, // Text size
+                          ),
+                        ),
+                      ),
               ],
             ),
           ],

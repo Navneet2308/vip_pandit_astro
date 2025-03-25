@@ -1,9 +1,6 @@
-
-
 import 'package:astrologeradmin/constance/language/language.dart';
 
-class LanguageEn extends Languages{
-
+class LanguageEn extends Languages {
   @override
   String get appName => "";
 
@@ -14,10 +11,8 @@ class LanguageEn extends Languages{
   String get aiAstrologyS => "VIP Pandit Astro";
 
   @override
-  String get onbord_des => "Register yourself with VIP Pandit and start helping people with you astrology skills";
-
-
-
+  String get onbord_des =>
+      "Register yourself with VIP Pandit and start helping people with you astrology skills";
 
   @override
   String get consultation_Schedule => "Consultation Schedule";
@@ -25,19 +20,21 @@ class LanguageEn extends Languages{
   @override
   String get update_schedule => "Update Schedule";
 
+  @override
+  String get consulation_schedule_text =>
+      "Set your consultation schedule based on your availability of consultation";
 
   @override
-  String get consulation_schedule_text => "Set your consultation schedule based on your availability of consultation";
+  String get findCompleteSolutionToYourProblems =>
+      "Find Complete Solution to Your Problems";
 
   @override
-  String get findCompleteSolutionToYourProblems => "Find Complete Solution to Your Problems";
+  String get exploreNowToExperience =>
+      "Help people with your\nastrology skills and expertise";
 
   @override
-  String get exploreNowToExperience => "Help people with your\nastrology skills and expertise";
-
-
-  @override
-  String get loremIpsum => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ";
+  String get loremIpsum =>
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ";
 
   @override
   String get getStarted => "Get Started";
@@ -49,13 +46,11 @@ class LanguageEn extends Languages{
   String get loginToAiAstrology => "Login to VIP Pandit Astro";
 
   @override
-  String get consultHundredsOfExpert =>"Register yourself with VIP Pandit and start helping people with you astrology skills";
+  String get consultHundredsOfExpert =>
+      "Register yourself with VIP Pandit and start helping people with you astrology skills";
 
   @override
   String get and => " and ";
-
-
-
 
   @override
   String get bySigningUpYouAgree => "By signing up, you agree to our";
@@ -64,7 +59,8 @@ class LanguageEn extends Languages{
   String get registerAccount => "Register Account";
 
   @override
-  String get yourAccountNotRegistered => "Your account is not registered with us. Please provide some of your details.";
+  String get yourAccountNotRegistered =>
+      "Your account is not registered with us. Please provide some of your details.";
 
   @override
   String get fullName => "Full Name";
@@ -117,7 +113,6 @@ class LanguageEn extends Languages{
   @override
   String get enterYourvalidMobileNumber => "Enter a valid phone number";
 
-
   @override
   String get enterOtpWhichhas =>
       "Enter OTP which has been sent to your mobile number and complete your account verification.";
@@ -134,15 +129,11 @@ class LanguageEn extends Languages{
   @override
   String get phoneNumber => "Phone Number";
 
-
-
-
   @override
   String get privacyPolicy => "Privacy Policy";
 
   @override
   String get english => "English (US)";
-
 
   @override
   String get termsAndConditions => "Terms & Conditions";
@@ -157,10 +148,10 @@ class LanguageEn extends Languages{
   String get hazzle_free_service => "Hazzle Free Service";
 
   @override
-  String get verifiedAstrologers =>"Verified Astrologers";
+  String get verifiedAstrologers => "Verified Astrologers";
 
   @override
-  String get verify =>"Verify";
+  String get verify => "Verify";
 
   @override
   String get sendOTP => "Send OTP";
@@ -169,16 +160,19 @@ class LanguageEn extends Languages{
   String get otpVerification => "OTP Verification";
 
   @override
-  String get astrologerNeedToComplete => "Astrologer need to complete this screening quiz to schedule for interview and confirm registration";
+  String get astrologerNeedToComplete =>
+      "Astrologer need to complete this screening quiz to schedule for interview and confirm registration";
 
   @override
-  String get howManyTotalRashisInVedicAstrology => "How many total rashis in vedic astrology?";
+  String get howManyTotalRashisInVedicAstrology =>
+      "How many total rashis in vedic astrology?";
 
   @override
   String get preRegistrationScreeningQuiz => "Pre Registration Screening Quiz";
 
   @override
-  String get beforeStartUsingThisPlatform => "Before start using this platform, our expert astrologers will review your knowledge and experience as this will effect the future of our customers.";
+  String get beforeStartUsingThisPlatform =>
+      "Before start using this platform, our expert astrologers will review your knowledge and experience as this will effect the future of our customers.";
 
   @override
   String get kyc_pending => "KYC Pending";
@@ -186,31 +180,34 @@ class LanguageEn extends Languages{
   @override
   String get not_applied => "Not Applied";
 
+  @override
+  String get chat => "Chat";
 
   @override
   String get kyc_approved => "KYC Approved";
-
 
   @override
   String get activeConsultation => "Active Consultation";
 
   @override
-  String get audioVideoCall => "Audio/Video Call";
+  String get audioVideoCall => "Video Call";
 
   @override
   String get consultationRequests => "Consultation Requests";
 
   @override
-  String get consultationScheduleNotUpdated => "Consultation Schedule not Updated";
+  String get consultationScheduleNotUpdated =>
+      "Consultation Schedule not Updated";
 
   @override
   String get dutyOnOff => "Duty On/Off";
 
   @override
-  String get letStartSolvingPeoplesProblem => "Let’s start solving people’s problem";
+  String get letStartSolvingPeoplesProblem =>
+      "Let’s start solving people’s problem";
 
   @override
-  String get welcome =>"Welcome";
+  String get welcome => "Welcome";
 
   @override
   String get accept => "Accept";
@@ -241,11 +238,11 @@ class LanguageEn extends Languages{
 
   @override
   // TODO: implement adhar_front_photo
-  String get adhar_front_photo =>"Adhaar front photo";
+  String get adhar_front_photo => "Adhaar front photo";
 
   @override
   // TODO: implement enter_adhar_card_number
-  String get enter_adhar_card_number =>"Enter Adhaar card number";
+  String get enter_adhar_card_number => "Enter Adhaar card number";
 
   @override
   // TODO: implement astor_profile_bio
@@ -253,7 +250,8 @@ class LanguageEn extends Languages{
 
   @override
   // TODO: implement astor_profile_bio_detail
-  String get astor_profile_bio_detail => "Write every detail of your astrology journey here.";
+  String get astor_profile_bio_detail =>
+      "Write every detail of your astrology journey here.";
 
   @override
   // TODO: implement enter_charge
@@ -286,19 +284,21 @@ class LanguageEn extends Languages{
   String get consultation_history => "Consultation History";
 
   @override
-  String get detail_consultation_transaction => "Details of Consultation Transactions";
+  String get detail_consultation_transaction =>
+      "Details of Consultation Transactions";
 
   @override
   String get bank_details_kyc => "Bank Details KYC";
 
   @override
-  String get these_bank_details => "These bank details will be used to transfer your earnings to your bank account";
+  String get these_bank_details =>
+      "These bank details will be used to transfer your earnings to your bank account";
 
   @override
-  String get kyc_rejected =>"KYC Rejected";
+  String get kyc_rejected => "KYC Rejected";
 
   @override
-  String get update_bank_details =>"Update Bank Details";
+  String get update_bank_details => "Update Bank Details";
 
   @override
   // TODO: implement account_holder_name
@@ -342,8 +342,8 @@ class LanguageEn extends Languages{
 
   @override
   // TODO: implement update_account_details
-  String get list_of_customer_following_you => "List of the customer following you";
-
+  String get list_of_customer_following_you =>
+      "List of the customer following you";
 
   @override
   // TODO: implement update_account_details
@@ -351,7 +351,8 @@ class LanguageEn extends Languages{
 
   @override
   // TODO: implement update_account_details
-  String get start_solving_people_problem => "Let’s start solving people’s problem";
+  String get start_solving_people_problem =>
+      "Let’s start solving people’s problem";
 
   @override
   // TODO: implement call_us
@@ -359,15 +360,18 @@ class LanguageEn extends Languages{
 
   @override
   // TODO: implement connect_through_chat_resolve_issue
-  String get connect_through_chat_resolve_issue => "Connect through chat to resolve your queries immediately";
+  String get connect_through_chat_resolve_issue =>
+      "Connect through chat to resolve your queries immediately";
 
   @override
   // TODO: implement connect_with_one_of_our_support_executives
-  String get connect_with_one_of_our_support_executives => "Connect with one of our support executives";
+  String get connect_with_one_of_our_support_executives =>
+      "Connect with one of our support executives";
 
   @override
   // TODO: implement connect_with_us_available_options
-  String get connect_with_us_available_options => "Connect with us via following available options";
+  String get connect_with_us_available_options =>
+      "Connect with us via following available options";
 
   @override
   // TODO: implement need_help
@@ -381,10 +385,10 @@ class LanguageEn extends Languages{
   // TODO: implement mail_to
   String get mail_us => "Mail Us";
 
-
   @override
   // TODO: implement mail_to
-  String get get_call_back_from_executive => "Get a call back from our executives within 24 hours";
+  String get get_call_back_from_executive =>
+      "Get a call back from our executives within 24 hours";
 
   @override
   // TODO: implement today_call_earning
@@ -468,7 +472,8 @@ class LanguageEn extends Languages{
   String get resend_otp => "Resend OTP";
 
   @override
-  String get welcome_to_aiAstro => "Welcome to VIP Pandit Astro, Your Account is Under Review! We will update you when your account is ready to use";
+  String get welcome_to_aiAstro =>
+      "Welcome to VIP Pandit Astro, Your Account is Under Review! We will update you when your account is ready to use";
 
   @override
   String get account_under_Review => "Account Under Review!";
@@ -486,25 +491,25 @@ class LanguageEn extends Languages{
   // TODO: implement partner_address
   String get partner_address => "Partner Address";
 
-
   @override
-  String get doyou_want_exit   =>"Do you want to exit app?";
+  String get doyou_want_exit => "Do you want to exit app?";
 
   @override
   String get pleaseEnterPartnerName => "Please enter partner name";
 
   @override
-  String get pleaseEnterPartnerPlaceOfBirth =>  "Please enter partner place of birth";
+  String get pleaseEnterPartnerPlaceOfBirth =>
+      "Please enter partner place of birth";
 
   @override
-  String get pleaseSelectPartnerDob =>  "Please enter partner date of birth";
-
+  String get pleaseSelectPartnerDob => "Please enter partner date of birth";
 
   @override
   String get exit => "Exit";
 
   @override
-  String get are_your_sure_exit_chat => "Are you sure you want to exit this chat ?";
+  String get are_your_sure_exit_chat =>
+      "Are you sure you want to exit this chat ?";
 
   @override
   String get end_consultation => "END CONSULTATION";
@@ -531,7 +536,8 @@ class LanguageEn extends Languages{
 
   @override
   // TODO: implement cancel
-  String get enterAmountTowithdraw => "Enter Amount to Send Request for Withdrawal";
+  String get enterAmountTowithdraw =>
+      "Enter Amount to Send Request for Withdrawal";
 
   @override
   // TODO: implement cancel
@@ -545,12 +551,10 @@ class LanguageEn extends Languages{
   // TODO: implement cancel
   String get pleaseEnterAmount => "Please Enter Amount";
 
-
   @override
   String get enterAmount => "Enter Amount";
 
-
-
   @override
-  String get end_consultation_description => "Are sure you want to end consultation";
+  String get end_consultation_description =>
+      "Are sure you want to end consultation";
 }

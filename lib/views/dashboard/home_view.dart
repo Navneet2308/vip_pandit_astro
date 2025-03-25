@@ -220,13 +220,22 @@ class _HomePageState extends State<HomePage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
-                                            Languages.of(context)!
-                                                .audioVideoCall,
-                                            style: mediumTextStyle(
-                                                fontSize: dimen15,
-                                                color: white),
-                                          ),
+                                          provider.activeconsultationList[index]
+                                                      .consultationType ==
+                                                  1
+                                              ? Text(
+                                                  Languages.of(context)!.chat,
+                                                  style: mediumTextStyle(
+                                                      fontSize: dimen15,
+                                                      color: white),
+                                                )
+                                              : Text(
+                                                  Languages.of(context)!
+                                                      .audioVideoCall,
+                                                  style: mediumTextStyle(
+                                                      fontSize: dimen15,
+                                                      color: white),
+                                                ),
                                           Text(
                                             "${provider.activeconsultationList[index].duration} Min.",
                                             style: mediumTextStyle(
@@ -311,13 +320,22 @@ class _HomePageState extends State<HomePage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Text(
-                                            Languages.of(context)!
-                                                .audioVideoCall,
-                                            style: mediumTextStyle(
-                                                fontSize: dimen15,
-                                                color: white),
-                                          ),
+                                          provider.consultationList[index]
+                                                      .consultationType ==
+                                                  1
+                                              ? Text(
+                                                  Languages.of(context)!.chat,
+                                                  style: mediumTextStyle(
+                                                      fontSize: dimen15,
+                                                      color: white),
+                                                )
+                                              : Text(
+                                                  Languages.of(context)!
+                                                      .audioVideoCall,
+                                                  style: mediumTextStyle(
+                                                      fontSize: dimen15,
+                                                      color: white),
+                                                ),
                                         ],
                                       ),
                                     ),
@@ -365,35 +383,35 @@ class _HomePageState extends State<HomePage> {
                                                 39.0),
                                           )
                                         : Container(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 5.0, left: 15, right: 15),
-                                      child: Text(
-                                        provider
-                                            .consultationList[index].fullName,
-                                        style: mediumTextStyle(
-                                            fontSize: dimen16, color: black),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 5.0, left: 15, right: 15),
-                                      child: Text(
-                                        "${Languages.of(context)!.dob}: ${provider.consultationList[index].dateOfBirth} ${provider.consultationList[index].timeOfBirth}",
-                                        style: regularTextStyle(
-                                            fontSize: dimen14, color: black),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 5.0, left: 15, right: 15),
-                                      child: Text(
-                                        "${provider.consultationList[index].placeOfBirth} - ${provider.consultationList[index].pincode}",
-                                        style: mediumTextStyle(
-                                            fontSize: dimen14, color: red),
-                                      ),
-                                    ),
-                                    SizedBox(height: 5)
+                                    // Padding(
+                                    //   padding: const EdgeInsets.only(
+                                    //       top: 5.0, left: 15, right: 15),
+                                    //   child: Text(
+                                    //     provider
+                                    //         .consultationList[index].fullName,
+                                    //     style: mediumTextStyle(
+                                    //         fontSize: dimen16, color: black),
+                                    //   ),
+                                    // ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.only(
+                                    //       top: 5.0, left: 15, right: 15),
+                                    //   child: Text(
+                                    //     "${Languages.of(context)!.dob}: ${provider.consultationList[index].dateOfBirth} ${provider.consultationList[index].timeOfBirth}",
+                                    //     style: regularTextStyle(
+                                    //         fontSize: dimen14, color: black),
+                                    //   ),
+                                    // ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.only(
+                                    //       top: 5.0, left: 15, right: 15),
+                                    //   child: Text(
+                                    //     "${provider.consultationList[index].placeOfBirth} - ${provider.consultationList[index].pincode}",
+                                    //     style: mediumTextStyle(
+                                    //         fontSize: dimen14, color: red),
+                                    //   ),
+                                    // ),
+                                    // SizedBox(height: 5)
                                   ],
                                 ),
                               );

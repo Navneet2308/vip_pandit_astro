@@ -358,8 +358,7 @@ class DashboardProvider extends ChangeNotifier {
         PreferencesServices.setPreferencesData(
             PreferencesServices.account_holder, mResponse.bank!.accountHolder);
         showSuccessSnackBar(context, mResponse.message.toString());
-
-        getBankDetails();
+        getBankAccountAPI(context);
       } else {
         showErrorSnackBar(context, "Unknown response message");
       }

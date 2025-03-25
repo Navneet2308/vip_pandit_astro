@@ -25,53 +25,57 @@ Widget buildDatePickerField(
         ),
       ),
       const SizedBox(height: 8), // Spacing between label and field
-  GestureDetector(
-  onTap: () async {
-  DateTime today = DateTime.now();
-  DateTime firstDate = label == Languages.of(context)!.sugggest_time_interview
-  ? today.add(Duration(days: 1)) // Enforce selecting a date after today
-      : DateTime(1900);
-  DateTime lastDate = label == Languages.of(context)!.sugggest_time_interview
-  ? DateTime(2100)
-      : DateTime(2025);
+      GestureDetector(
+        onTap: () async {
+          DateTime today = DateTime.now();
+          DateTime firstDate =
+              label == Languages.of(context)!.sugggest_time_interview
+                  ? today.add(
+                      Duration(days: 1)) // Enforce selecting a date after today
+                  : DateTime(1900);
+          DateTime lastDate =
+              label == Languages.of(context)!.sugggest_time_interview
+                  ? DateTime(2100)
+                  : DateTime(2025);
 
-  DateTime initialDate = firstDate.isAfter(DateTime(2010)) ? firstDate : DateTime(2010);
-  DateTime? pickedDate = await showDatePicker(
-  context: context,
-  initialDate: initialDate,
-  firstDate: firstDate,
-  lastDate: lastDate,
-  );
+          DateTime initialDate =
+              firstDate.isAfter(DateTime(2010)) ? firstDate : DateTime(2010);
+          DateTime? pickedDate = await showDatePicker(
+            context: context,
+            initialDate: initialDate,
+            firstDate: firstDate,
+            lastDate: lastDate,
+          );
 
-  if (pickedDate != null) {
-  String formattedDate =
-  "${pickedDate.year}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.day.toString().padLeft(2, '0')}";
-  onChanged(formattedDate);
-  }
-  },
-  child: Container(
-  width: double.infinity,
-  margin: const EdgeInsets.symmetric(horizontal: 15.0),
-  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
-  decoration: BoxDecoration(
-  border: Border.all(color: Colors.grey, width: 0.5),
-  borderRadius: BorderRadius.circular(10),
-  ),
-  child: Text(
-  selectedDate.isEmpty ? hintText : selectedDate,
-  style: TextStyle(
-  color: selectedDate.isEmpty ? Colors.grey : Colors.black,
-  fontSize: 16,
-  ),
-  ),
-  ),
-  ),
+          if (pickedDate != null) {
+            String formattedDate =
+                "${pickedDate.year}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.day.toString().padLeft(2, '0')}";
+            onChanged(formattedDate);
+          }
+        },
+        child: Container(
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(horizontal: 15.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey, width: 0.5),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Text(
+            selectedDate.isEmpty ? hintText : selectedDate,
+            style: TextStyle(
+              color: selectedDate.isEmpty ? Colors.grey : Colors.black,
+              fontSize: 16,
+            ),
+          ),
+        ),
+      ),
     ],
   );
 }
 
 Widget buildHalfWidthTextField(
-    BuildContext context,
+  BuildContext context,
   String label,
   String hintText,
   Function(String) onChanged,
@@ -80,17 +84,16 @@ Widget buildHalfWidthTextField(
   int? maxLength;
   TextInputType keyboardType = TextInputType.text;
 
-  if (label==(Languages.of(context)!.pincode)){
+  if (label == (Languages.of(context)!.pincode)) {
     keyboardType = TextInputType.number;
     maxLength = 6;
-  } else if (label==(Languages.of(context)!.exp_in_year)) {
+  } else if (label == (Languages.of(context)!.exp_in_year)) {
     keyboardType = TextInputType.number;
     maxLength = 10;
-  } else if (label==(Languages.of(context)!.callChargePerMin)) {
+  } else if (label == (Languages.of(context)!.callChargePerMin)) {
     keyboardType = TextInputType.number;
     maxLength = 10;
-  }
-  else if (label==(Languages.of(context)!.chatChargePerMin)) {
+  } else if (label == (Languages.of(context)!.chatChargePerMin)) {
     keyboardType = TextInputType.number;
     maxLength = 10;
   }
@@ -140,7 +143,7 @@ Widget buildHalfWidthTextField(
 }
 
 Widget buildTextFieldProfileBio(
-    BuildContext context,
+  BuildContext context,
   String label,
   String hintText,
   Function(String) onChanged,
@@ -149,24 +152,21 @@ Widget buildTextFieldProfileBio(
   int? maxLength;
   TextInputType keyboardType = TextInputType.text;
 
-  if (label==(Languages.of(context)!.emailAddress))
-    {
+  if (label == (Languages.of(context)!.emailAddress)) {
     keyboardType = TextInputType.emailAddress;
     maxLength = 100;
-  } else if (label==(Languages.of(context)!.phoneNumber) ||
-      label==(Languages.of(context)!.chatChargePerMin) ||
-      label==(Languages.of(context)!.callChargePerMin)
-  ) {
+  } else if (label == (Languages.of(context)!.phoneNumber) ||
+      label == (Languages.of(context)!.chatChargePerMin) ||
+      label == (Languages.of(context)!.callChargePerMin)) {
     keyboardType = TextInputType.number;
     maxLength = 10; // Adjust as needed
-  }
-  else if ( label==(Languages.of(context)!.pincode)) {
+  } else if (label == (Languages.of(context)!.pincode)) {
     keyboardType = TextInputType.number;
     maxLength = 6;
-  }else if ( label==(Languages.of(context)!.phoneNumber)) {
+  } else if (label == (Languages.of(context)!.phoneNumber)) {
     keyboardType = TextInputType.phone;
     maxLength = 10;
-  } else if ( label==(Languages.of(context)!.adhar_card_number)) {
+  } else if (label == (Languages.of(context)!.adhar_card_number)) {
     keyboardType = TextInputType.number;
     maxLength = 12;
   }
@@ -232,8 +232,108 @@ class UpperCaseTextFormatter extends TextInputFormatter {
   }
 }
 
+Widget buildTextBankField(
+  BuildContext context,
+  String label,
+  String hintText,
+  Function(String) onChanged,
+  String value, {
+  bool isEditable = true,
+}) {
+  int? maxLength;
+  TextInputType keyboardType = TextInputType.text;
+
+  if (label == (Languages.of(context)!.adhar_card_number)) {
+    keyboardType = TextInputType.number;
+    maxLength = 12;
+  } else if (label == (Languages.of(context)!.account_number)) {
+    keyboardType = TextInputType.number;
+    maxLength = 18;
+  } else if (label == (Languages.of(context)!.emailAddress)) {
+    keyboardType = TextInputType.emailAddress;
+    maxLength = 100;
+  } else if (label == (Languages.of(context)!.phoneNumber)) {
+    keyboardType = TextInputType.number;
+    maxLength = 10;
+  } else if (label == (Languages.of(context)!.emailAddress)) {
+    keyboardType = TextInputType.emailAddress;
+    maxLength = 22;
+  } else if (label == (Languages.of(context)!.phoneNumber) ||
+      label == (Languages.of(context)!.chatChargePerMin) ||
+      label == (Languages.of(context)!.callChargePerMin)) {
+    keyboardType = TextInputType.number;
+    maxLength = 10; // Adjust as needed
+  } else if (label == (Languages.of(context)!.bank_ifsc_code)) {
+    keyboardType = TextInputType.text;
+    maxLength = 11;
+  } else if (label == (Languages.of(context)!.pincode)) {
+    keyboardType = TextInputType.number;
+    maxLength = 6;
+  } else if (label == (Languages.of(context)!.date_time)) {
+    keyboardType = TextInputType.datetime;
+  } else if (label == (Languages.of(context)!.dateOfBirth)) {
+    keyboardType = TextInputType.datetime;
+  }
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Text(
+          label,
+          style: regularTextStyle(fontSize: dimen15, color: colBlack),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20.0),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            border: Border.all(color: textHint, width: 0.5),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+          ),
+          child: Row(
+            children: [
+              const SizedBox(width: 8),
+              Expanded(
+                child: TextFormField(
+                  readOnly:
+                      !isEditable, // Make it non-editable when not applied or rejected
+                  initialValue: value,
+                  // Sets the initial value without a controller
+                  onChanged: onChanged,
+                  inputFormatters: [
+                    if (label == (Languages.of(context)!.bank_ifsc_code))
+                      UpperCaseTextFormatter(),
+                    if (label == (Languages.of(context)!.bank_name))
+                      UpperCaseTextFormatter(),
+                  ],
+                  style: regularTextStyle(
+                      fontSize: 14.0, color: isEditable ? colBlack : textHint),
+                  keyboardType: keyboardType,
+                  maxLength: maxLength,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: hintText,
+                    hintStyle: regularTextStyle(
+                        fontSize: 14.0,
+                        color:
+                            isEditable ? textHint : textHint.withOpacity(0.7)),
+                    counterText: "", // Hides the max length counter
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
 Widget buildTextField(
-    BuildContext context,
+  BuildContext context,
   String label,
   String hintText,
   Function(String) onChanged,
@@ -242,42 +342,35 @@ Widget buildTextField(
   int? maxLength;
   TextInputType keyboardType = TextInputType.text;
 
-  if (label==(Languages.of(context)!.adhar_card_number)) {
+  if (label == (Languages.of(context)!.adhar_card_number)) {
     keyboardType = TextInputType.number;
     maxLength = 12;
-  }
-  else if (label==(Languages.of(context)!.account_number)) {
+  } else if (label == (Languages.of(context)!.account_number)) {
     keyboardType = TextInputType.number;
     maxLength = 18;
-  }
-  else if (label==(Languages.of(context)!.emailAddress)) {
+  } else if (label == (Languages.of(context)!.emailAddress)) {
     keyboardType = TextInputType.emailAddress;
     maxLength = 100;
-  } else if (label==(Languages.of(context)!.phoneNumber)) {
+  } else if (label == (Languages.of(context)!.phoneNumber)) {
     keyboardType = TextInputType.number;
     maxLength = 10;
-  }  else if (label==(Languages.of(context)!.emailAddress)) {
+  } else if (label == (Languages.of(context)!.emailAddress)) {
     keyboardType = TextInputType.emailAddress;
     maxLength = 22;
-  } else if (label==(Languages.of(context)!.phoneNumber) ||
-      label==(Languages.of(context)!.chatChargePerMin) ||
-      label==(Languages.of(context)!.callChargePerMin)
- ) {
+  } else if (label == (Languages.of(context)!.phoneNumber) ||
+      label == (Languages.of(context)!.chatChargePerMin) ||
+      label == (Languages.of(context)!.callChargePerMin)) {
     keyboardType = TextInputType.number;
     maxLength = 10; // Adjust as needed
-  }
-  else if ( label==(Languages.of(context)!.bank_ifsc_code)) {
+  } else if (label == (Languages.of(context)!.bank_ifsc_code)) {
     keyboardType = TextInputType.text;
     maxLength = 11;
-  }
-  else if ( label==(Languages.of(context)!.pincode)) {
+  } else if (label == (Languages.of(context)!.pincode)) {
     keyboardType = TextInputType.number;
     maxLength = 6;
-  }
-  else if (label==(Languages.of(context)!.date_time)) {
+  } else if (label == (Languages.of(context)!.date_time)) {
     keyboardType = TextInputType.datetime;
-  }
-  else if (label==(Languages.of(context)!.dateOfBirth)) {
+  } else if (label == (Languages.of(context)!.dateOfBirth)) {
     keyboardType = TextInputType.datetime;
   }
   return Column(
@@ -308,9 +401,9 @@ Widget buildTextField(
                   // Sets the initial value without a controller
                   onChanged: onChanged,
                   inputFormatters: [
-                    if (label==(Languages.of(context)!.bank_ifsc_code))
+                    if (label == (Languages.of(context)!.bank_ifsc_code))
                       UpperCaseTextFormatter(),
-                    if (label==(Languages.of(context)!.bank_name))
+                    if (label == (Languages.of(context)!.bank_name))
                       UpperCaseTextFormatter(),
                   ],
                   style: regularTextStyle(fontSize: 14.0, color: colBlack),
